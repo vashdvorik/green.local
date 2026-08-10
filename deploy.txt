@@ -1,0 +1,36 @@
+Краткий деплой Laravel + Filament:
+Создайте MySQL-базу и пользователя на сервере.
+
+Загрузите проект на сервер и создайте .env вручную:
+
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://example.com
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=название_базы
+DB_USERNAME=пользователь
+DB_PASSWORD=пароль
+
+ADMIN_NAME="Energy Hub Administrator"
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD="сложный_пароль"
+
+Выполните в корне проекта:
+composer install --no-dev --optimize-autoloader
+php artisan key:generate
+php artisan migrate --seed --force
+php artisan storage:link
+npm install
+npm run build
+composer run deploy
+php artisan key:generate запускайте только при первой установке.
+
+В настройках Nginx/Apache укажите корень сайта:
+/path/to/project/public
+
+Проверьте:
+https://example.com/admin
+Администратор создаётся из ADMIN_EMAIL и ADMIN_PASSWORD при выполнении migrate --seed.
