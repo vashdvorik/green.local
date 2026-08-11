@@ -1,6 +1,9 @@
 @extends('layouts.site')
 @section('content')
-<section class="hero">
+@push('head')
+<link rel="preload" as="image" href="{{ asset('images/hero-beta.avif') }}" type="image/avif" fetchpriority="high">
+@endpush
+<section class="hero home-energy-section">
     <div class="hero__photo" aria-hidden="true"></div>
     <div class="container hero__content">
         <div class="hero__topline">
@@ -55,7 +58,7 @@
     </div>
 </section>
 
-<section class="section section--project">
+<section class="section section--project home-energy-section">
     <div class="container project-grid">
         <div class="project-mission">
             <div class="section-marker"><span data-i18n="home.project.label">О проекте</span></div>
@@ -66,7 +69,7 @@
         </div>
 
         <article class="project-photo-card project-photo-card--hub">
-            <img src="{{ asset('images/energy-hero.png') }}" alt="" loading="lazy">
+            @include('partials.responsive-image', ['name' => 'energy-hero', 'alt' => '', 'loading' => 'lazy'])
             <div class="project-photo-card__overlay">
                 <p class="eyebrow eyebrow--light" data-i18n="home.project.hub.label">Центр экспертизы</p>
                 <h3 data-i18n="home.project.hub.title">Green Energy Hub</h3>
@@ -80,7 +83,7 @@
         </article>
 
         <article class="project-photo-card project-photo-card--practice">
-            <img src="{{ asset('images/infrastructure-beta.png') }}" alt="" loading="lazy">
+            @include('partials.responsive-image', ['name' => 'infrastructure-beta', 'alt' => '', 'loading' => 'lazy'])
             <div class="project-photo-card__overlay">
                 <p class="eyebrow eyebrow--light" data-i18n="home.project.practice.label">Практический подход</p>
                 <h3 data-i18n="home.project.practice.title">Решения начинаются с понимания.</h3>
@@ -103,7 +106,7 @@
     </div>
 </section>
 
-<section class="section section--solutions">
+<section class="section section--solutions home-energy-section">
     <div class="container">
         <div class="section-head">
             <div>
@@ -131,29 +134,29 @@
     </div>
 </section>
 
-<section class="section section--feed">
+<section class="section section--feed home-energy-section">
     <div class="container">
         <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.news.label">Последние новости</span></div><h2 data-i18n="home.news.title">Что происходит в хабе.</h2></div><a class="text-link" href="{{ route('news') }}" data-i18n="home.news.cta">Все новости <span aria-hidden="true">→</span></a></div>
         <div class="news-grid">
-            <article class="news-card"><div class="news-card__image"><img src="{{ asset('images/energy-hero.png') }}" alt="" loading="lazy"><span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news1">Заголовок новости проекта</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
-            <article class="news-card"><div class="news-card__image"><img src="{{ asset('images/infrastructure-beta.png') }}" alt="" loading="lazy"><span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news2">Новая публикация Green Energy Hub</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
-            <article class="news-card"><div class="news-card__image"><img src="{{ asset('images/project-beta.png') }}" alt="" loading="lazy"><span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news3">Практика, обучение и партнёрство</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
+            <article class="news-card"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'energy-hero', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news1">Заголовок новости проекта</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
+            <article class="news-card"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'infrastructure-beta', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news2">Новая публикация Green Energy Hub</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
+            <article class="news-card"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'project-beta', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news3">Практика, обучение и партнёрство</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><a class="card-link" href="{{ route('news') }}" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></a></article>
         </div>
     </div>
 </section>
 
-<section class="section section--opportunities">
+<section class="section section--opportunities home-energy-section">
     <div class="container">
         <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.opps.label">Актуальные возможности</span></div><h2 data-i18n="home.opps.title">Возможности, которыми можно воспользоваться сейчас.</h2></div><a class="text-link" href="{{ route('stories') }}" data-i18n="home.opps.cta">Все возможности <span aria-hidden="true">→</span></a></div>
         <div class="opportunity-grid">
-            <article class="opportunity-card"><div class="opportunity-card__image"><img src="{{ asset('images/project-beta.png') }}" alt="" loading="lazy"></div><span class="badge" data-i18n="placeholder.opportunity.type">ОБУЧЕНИЕ</span><h3 data-i18n="placeholder.opportunity1">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
-            <article class="opportunity-card"><div class="opportunity-card__image"><img src="{{ asset('images/infrastructure-beta.png') }}" alt="" loading="lazy"></div><span class="badge badge--dark" data-i18n="placeholder.opportunity.type2">КОНКУРС</span><h3 data-i18n="placeholder.opportunity2">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
-            <article class="opportunity-card"><div class="opportunity-card__image"><img src="{{ asset('images/energy-hero.png') }}" alt="" loading="lazy"></div><span class="badge badge--soft" data-i18n="placeholder.opportunity.type3">ОБМЕН ОПЫТОМ</span><h3 data-i18n="placeholder.opportunity3">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
+            <article class="opportunity-card"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'project-beta', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge" data-i18n="placeholder.opportunity.type">ОБУЧЕНИЕ</span><h3 data-i18n="placeholder.opportunity1">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
+            <article class="opportunity-card"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'infrastructure-beta', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge badge--dark" data-i18n="placeholder.opportunity.type2">КОНКУРС</span><h3 data-i18n="placeholder.opportunity2">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
+            <article class="opportunity-card"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'energy-hero', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge badge--soft" data-i18n="placeholder.opportunity.type3">ОБМЕН ОПЫТОМ</span><h3 data-i18n="placeholder.opportunity3">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><a class="button button--small" href="{{ route('stories') }}" data-i18n="home.details">Подробнее</a></div></article>
         </div>
     </div>
 </section>
 
-<section class="section section--partners">
+<section class="section section--partners home-energy-section">
     <div class="container partners-grid">
         <div><div class="section-marker"><span data-i18n="home.partners.label">Партнёры</span></div><h2 data-i18n="home.partners.title">Экспертиза объединяет.</h2><p class="body-copy" data-i18n="home.partners.copy">Green Energy Hub сотрудничает с организациями, которые помогают развивать экспертизу, обучение и практические решения в сфере энергоэффективности.</p><a class="button button--outline" href="{{ route('partners') }}" data-i18n="home.partners.cta">Все партнёры <span aria-hidden="true">→</span></a></div>
         <div class="partner-logos"><div class="partner-logo">PARTNER 01</div><div class="partner-logo">PARTNER 02</div><div class="partner-logo">PARTNER 03</div><div class="partner-logo">PARTNER 04</div></div>

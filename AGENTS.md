@@ -40,6 +40,13 @@
 - Headings must use `text-wrap: balance` and must not depend on manual `<br>` tags or a fixed one-line height.
 - Russian headings may use a small letter-spacing adjustment, but do not reduce body-text size or readability to force a translation into one line.
 
+## Color usage
+
+- Do not use green as a large-area fill for content sections or page backgrounds. Keep major surfaces neutral or photographic.
+- Use green only as a restrained accent: buttons, markers, lines, dots, badges, borders, small cards and active states.
+- Text on light-green surfaces must be black or neutral-black, never green. This applies to headings, body copy, metadata, links and CTA labels.
+- When changing a section background, inspect the whole page for the same large-surface pattern and preserve the neutral/accent balance across desktop and mobile.
+
 ## Card alignment verification
 
 - Every repeated card must be checked as a complete unit: image, badge, metadata, title, description, deadline and CTA must use the same horizontal content edge.

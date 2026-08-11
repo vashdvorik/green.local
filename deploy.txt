@@ -19,10 +19,10 @@ ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD="сложный_пароль"
 
 Выполните в корне проекта:
-composer install --no-dev --optimize-autoloader
-php artisan key:generate
-php artisan migrate --seed --force
-php artisan storage:link
+/usr/local/bin/ea-php84 composer.phar install --no-dev --optimize-autoloader
+/usr/local/bin/ea-php84 artisan key:generate
+/usr/local/bin/ea-php84 artisan migrate --seed --force
+/usr/local/bin/ea-php84 artisan storage:link
 npm install
 npm run build
 composer run deploy

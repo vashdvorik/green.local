@@ -3,7 +3,11 @@
         <div class="site-footer__top">
             <div class="site-footer__brand">
                 <a href="{{ route('home') }}" aria-label="Green Energy Hub">
-                    <img class="footer__logo" src="{{ asset('images/green-energy-hub-logo.png') }}" alt="Green Energy Hub">
+                    <picture class="footer__picture">
+                        <source srcset="{{ asset('images/green-energy-hub-logo.avif') }}" type="image/avif">
+                        <source srcset="{{ asset('images/green-energy-hub-logo.webp') }}" type="image/webp">
+                        <img class="footer__logo" src="{{ asset('images/green-energy-hub-logo.png') }}" alt="Green Energy Hub">
+                    </picture>
                 </a>
                 <p data-i18n="footer.description">Центр экспертизы и практических решений в сфере энергоэффективности.</p>
             </div>

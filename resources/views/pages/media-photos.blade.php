@@ -20,7 +20,7 @@
 
         <div class="media-grid">
             <article class="media-card">
-                <div class="media-card__image"><img src="{{ asset('images/energy-project.png') }}" alt="" loading="lazy"></div>
+                <div class="media-card__image">@include('partials.responsive-image', ['name' => 'energy-project', 'alt' => '', 'loading' => 'lazy'])</div>
                 <span class="content-card__meta">[дата] · [тема]</span>
                 <h3>
                     <span class="locale-copy locale-copy--ru">Энергетическая инфраструктура</span>
@@ -34,7 +34,7 @@
                 </p>
             </article>
             <article class="media-card">
-                <div class="media-card__image"><img src="{{ asset('images/energy-infrastructure.png') }}" alt="" loading="lazy"></div>
+                <div class="media-card__image">@include('partials.responsive-image', ['name' => 'energy-infrastructure', 'alt' => '', 'loading' => 'lazy'])</div>
                 <span class="content-card__meta">[дата] · [тема]</span>
                 <h3>
                     <span class="locale-copy locale-copy--ru">Обучение и оборудование</span>

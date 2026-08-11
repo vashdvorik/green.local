@@ -1,7 +1,11 @@
 <header class="site-header">
     <div class="container site-header__inner">
         <a href="{{ route('home') }}" class="brand" aria-label="Green Energy Hub">
-            <img class="brand__logo" src="{{ asset('images/green-energy-hub-logo.png') }}" alt="Green Energy Hub">
+            <picture class="brand__picture">
+                <source srcset="{{ asset('images/green-energy-hub-logo.avif') }}" type="image/avif">
+                <source srcset="{{ asset('images/green-energy-hub-logo.webp') }}" type="image/webp">
+                <img class="brand__logo" src="{{ asset('images/green-energy-hub-logo.png') }}" alt="Green Energy Hub">
+            </picture>
         </a>
 
         <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-menu">
