@@ -16,12 +16,12 @@
                     <span class="navigation__chevron" aria-hidden="true"></span>
                 </button>
                 <div class="navigation__dropdown-menu" data-dropdown-menu>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.project">О Green Energy Hub</a>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.mission">Миссия и цели</a>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.directions">Направления работы</a>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.audits">Энергоаудиты</a>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.results">Результаты проекта</a>
-                    <a href="{{ route('about') }}" data-i18n="nav.about.reports">Отчёты</a>
+                    <a href="{{ route('about.project') }}" data-i18n="nav.about.project">О Green Energy Hub</a>
+                    <a href="{{ route('about.mission') }}" data-i18n="nav.about.mission">Миссия и цели</a>
+                    <a href="{{ route('about.directions') }}" data-i18n="nav.about.directions">Направления работы</a>
+                    <a href="{{ route('about.audits') }}" data-i18n="nav.about.audits">Энергоаудиты</a>
+                    <a href="{{ route('about.results') }}" data-i18n="nav.about.results">Результаты проекта</a>
+                    <a href="{{ route('about.reports') }}" data-i18n="nav.about.reports">Отчёты</a>
                 </div>
             </div>
             <a href="{{ route('business') }}" data-i18n="nav.business">Для бизнеса</a>
@@ -33,9 +33,9 @@
                     <span class="navigation__chevron" aria-hidden="true"></span>
                 </button>
                 <div class="navigation__dropdown-menu" data-dropdown-menu>
-                    <a href="{{ route('media') }}" data-i18n="nav.media.photo">Фото</a>
-                    <a href="{{ route('media') }}" data-i18n="nav.media.video">Видео</a>
-                    <a href="{{ route('media') }}" data-i18n="nav.media.catalogues">Каталоги</a>
+                    <a href="{{ route('media.photos') }}" data-i18n="nav.media.photo">Фото</a>
+                    <a href="{{ route('media.videos') }}" data-i18n="nav.media.video">Видео</a>
+                    <a href="{{ route('media.catalogues') }}" data-i18n="nav.media.catalogues">Каталоги</a>
                 </div>
             </div>
             <a href="{{ route('partners') }}" data-i18n="nav.partners">Партнёры</a>

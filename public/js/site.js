@@ -26,55 +26,55 @@
             "home.copy": "Площадка для бизнеса, специалистов и организаций, где практические знания помогают рациональнее использовать энергию и внедрять современные решения.",
             "home.about": "Узнать о проекте",
             "home.opportunities": "Возможности",
-            "home.process.label": "Как работает хаб",
+            "home.process.label": "Как мы работаем",
             "home.process.measure": "Измерить",
             "home.process.measure.copy": "энергопотребление",
-            "home.process.understand": "Понять",
+            "home.process.understand": "Проанализировать",
             "home.process.understand.copy": "где возникают потери",
-            "home.process.learn": "Обучить",
-            "home.process.learn.copy": "специалистов на практике",
-            "home.process.act": "Внедрить",
-            "home.process.act.copy": "обоснованные решения",
+            "home.process.learn": "Найти решение",
+            "home.process.learn.copy": "что можно изменить",
+            "home.process.act": "Применить",
+            "home.process.act.copy": "решения на практике",
             "home.process.note": "От данных — к практическим действиям.",
-            "home.focus.label": "Цели хаба",
+            "home.focus.label": "Ключевые направления",
             "home.focus.efficiency": "Энергоэффективность",
             "home.focus.audit": "Энергетические обследования",
             "home.focus.training": "Практическое обучение",
             "home.project.label": "О проекте",
             "home.project.eyebrow": "Миссия проекта",
-            "home.project.title": "Сделать знания и решения в сфере энергоэффективности доступными.",
-            "home.project.copy": "Green Energy Hub помогает бизнесу и специалистам переходить от общего понимания энергопотребления к практическим действиям: анализу, обучению и внедрению решений.",
-            "home.project.cta": "Для бизнеса",
+            "home.project.title": "Делаем энергоэффективность понятной и применимой.",
+            "home.project.copy": "Green Energy Hub помогает бизнесу и специалистам переходить от понимания энергопотребления к практическим действиям: анализировать потребление, находить потери и выбирать обоснованные решения.",
+            "home.project.cta": "Подробнее о Green Energy Hub",
             "home.project.hub.label": "Центр экспертизы",
             "home.project.hub.title": "Green Energy Hub",
-            "home.project.hub.copy": "Центр экспертизы, практического обучения и консультационной поддержки в сфере энергоэффективности и возобновляемой энергетики.",
+            "home.project.hub.copy": "Центр экспертизы, практического обучения и поддержки в сфере энергоэффективности и возобновляемой энергетики.",
             "home.project.tag.expertise": "Экспертиза",
             "home.project.tag.practice": "Практика",
             "home.project.tag.support": "Поддержка",
             "home.project.practice.label": "Практический подход",
             "home.project.practice.title": "Решения начинаются с понимания.",
-            "home.project.practice.copy": "Измерения, оборудование и знания помогают находить потери и действовать точнее.",
+            "home.project.practice.copy": "Измерения, практические знания и работа с оборудованием помогают находить источники потерь и принимать более точные решения.",
             "home.project.directions.label": "Направления работы",
             "home.project.direction.consult.title": "Консультационная поддержка",
-            "home.project.direction.consult.copy": "Помощь по вопросам энергопотребления, затрат и современных решений.",
+            "home.project.direction.consult.copy": "Помогаем разобраться в энергопотреблении, затратах и возможных мерах по повышению энергоэффективности.",
             "home.project.direction.audit.title": "Энергетические обследования",
-            "home.project.direction.audit.copy": "Анализируем потребление, находим потери и готовим рекомендации.",
+            "home.project.direction.audit.copy": "Анализируем энергопотребление, выявляем потери и готовим практические рекомендации.",
             "home.project.direction.training.title": "Обучение специалистов",
             "home.project.direction.training.copy": "Соединяем теорию, практику и работу с реальными объектами.",
-            "home.project.direction.equipment.title": "Работа с оборудованием",
-            "home.project.direction.equipment.copy": "Знакомим с измерительным, демонстрационным и учебным оборудованием.",
+            "home.project.direction.equipment.title": "Практика с оборудованием",
+            "home.project.direction.equipment.copy": "Учимся работать с измерительным, демонстрационным и учебным оборудованием.",
             "home.work.label": "Направления работы",
             "home.work.title": "Понимать систему. Находить потери. Действовать точнее.",
-            "home.work.copy": "От обследования и обучения до оборудования, материалов и экспертной поддержки.",
+            "home.work.copy": "Энергетические обследования, практическое обучение, работа с оборудованием и экспертная поддержка — основные направления Green Energy Hub.",
             "home.work.audit": "Энергетические обследования",
-            "home.work.audit.copy": "Выявляем источники потребления, потери и точки для улучшения.",
+            "home.work.audit.copy": "Анализируем энергопотребление, выявляем потери и определяем возможности для повышения энергоэффективности.",
             "home.work.audit.cta": "Энергоаудиты",
             "home.work.training": "Обучение специалистов",
             "home.work.training.copy": "Теория, практика и работа с реальными объектами.",
             "home.work.equipment": "Работа с оборудованием",
-            "home.work.equipment.copy": "Измерительное, демонстрационное и учебное оборудование в практике.",
+            "home.work.equipment.copy": "Измерительное, демонстрационное и учебное оборудование в практической работе.",
             "home.work.support": "Экспертная поддержка",
-            "home.work.support.copy": "Помогаем принимать решения по энергопотреблению и энергоэффективности.",
+            "home.work.support.copy": "Помогаем находить обоснованные решения в вопросах энергопотребления и энергоэффективности.",
             "home.work.cta": "Все направления",
             "home.business.label": "Для бизнеса",
             "home.business.title": "Энергоэффективность начинается с ясной картины.",
@@ -94,12 +94,12 @@
             "home.news.cta": "Все новости",
             "home.read": "Подробнее",
             "home.opps.label": "Актуальные возможности",
-            "home.opps.title": "Следующий шаг может начаться здесь.",
+            "home.opps.title": "Возможности, которыми можно воспользоваться сейчас.",
             "home.opps.cta": "Все возможности",
             "home.details": "Подробнее",
             "home.partners.label": "Партнёры",
-            "home.partners.title": "Сильнее вместе.",
-            "home.partners.copy": "Компактная сеть организаций, которые помогают развивать энергоэффективность и локальную экспертизу.",
+            "home.partners.title": "Экспертиза объединяет.",
+            "home.partners.copy": "Green Energy Hub сотрудничает с организациями, которые помогают развивать экспертизу, обучение и практические решения в сфере энергоэффективности.",
             "home.partners.cta": "Все партнёры",
             "home.contact.label": "Контакты",
             "home.contact.title": "Готовы разобраться с энергией?",
@@ -113,12 +113,12 @@
             "placeholder.excerpt": "Краткий анонс публикации появится здесь.",
             "placeholder.opportunity.type": "ОБУЧЕНИЕ",
             "placeholder.opportunity.type2": "КОНКУРС",
-            "placeholder.opportunity.type3": "ПАРТНЁРСТВО",
+            "placeholder.opportunity.type3": "ОБМЕН ОПЫТОМ",
             "placeholder.opportunity1": "Название возможности",
             "placeholder.opportunity2": "Название возможности",
             "placeholder.opportunity3": "Название возможности",
             "placeholder.opportunity.copy": "Краткое описание предложения или программы.",
-            "placeholder.deadline": "Дедлайн: дата",
+            "placeholder.deadline": "Подать заявку до [дата]",
             "footer.description": "Центр экспертизы и практических решений в сфере энергоэффективности.",
             "footer.menu": "Меню",
             "footer.contact": "Контакты",
@@ -154,55 +154,55 @@
             "home.copy": "O platformă pentru afaceri, specialiști și organizații, unde cunoștințele practice ajută la folosirea rațională a energiei, reducerea costurilor și implementarea soluțiilor moderne.",
             "home.about": "Despre proiect",
             "home.opportunities": "Oportunități",
-            "home.process.label": "Cum funcționează hub-ul",
+            "home.process.label": "Cum lucrăm",
             "home.process.measure": "Măsurăm",
             "home.process.measure.copy": "consumul de energie",
-            "home.process.understand": "Înțelegem",
+            "home.process.understand": "Analizăm",
             "home.process.understand.copy": "unde apar pierderile",
-            "home.process.learn": "Instruim",
-            "home.process.learn.copy": "specialiști prin practică",
-            "home.process.act": "Implementăm",
-            "home.process.act.copy": "soluții argumentate",
+            "home.process.learn": "Găsim soluția",
+            "home.process.learn.copy": "ce poate fi schimbat",
+            "home.process.act": "Aplicăm",
+            "home.process.act.copy": "soluțiile în practică",
             "home.process.note": "De la date — la acțiuni practice.",
-            "home.focus.label": "Prioritățile hub-ului",
+            "home.focus.label": "Direcții cheie",
             "home.focus.efficiency": "Eficiență energetică",
             "home.focus.audit": "Audituri energetice",
             "home.focus.training": "Instruire practică",
             "home.project.label": "Despre proiect",
             "home.project.eyebrow": "Misiunea proiectului",
-            "home.project.title": "Facem cunoștințele și soluțiile de eficiență energetică mai accesibile.",
-            "home.project.copy": "Green Energy Hub ajută afacerile și specialiștii să treacă de la înțelegerea consumului la acțiuni practice: analiză, instruire și implementarea soluțiilor.",
-            "home.project.cta": "Pentru afaceri",
+            "home.project.title": "Facem eficiența energetică ușor de înțeles și aplicat.",
+            "home.project.copy": "Green Energy Hub ajută afacerile și specialiștii să treacă de la înțelegerea consumului la acțiuni practice: analiza consumului, identificarea pierderilor și alegerea soluțiilor argumentate.",
+            "home.project.cta": "Mai multe despre Green Energy Hub",
             "home.project.hub.label": "Centru de expertiză",
             "home.project.hub.title": "Green Energy Hub",
-            "home.project.hub.copy": "Centru de expertiză, instruire practică și sprijin consultativ în eficiență energetică și energie regenerabilă.",
+            "home.project.hub.copy": "Centru de expertiză, instruire practică și sprijin în eficiență energetică și energie regenerabilă.",
             "home.project.tag.expertise": "Expertiză",
             "home.project.tag.practice": "Practică",
             "home.project.tag.support": "Sprijin",
             "home.project.practice.label": "Abordare practică",
             "home.project.practice.title": "Soluțiile încep cu înțelegerea.",
-            "home.project.practice.copy": "Măsurătorile, echipamentele și cunoștințele ajută la identificarea pierderilor și la acțiuni mai precise.",
+            "home.project.practice.copy": "Măsurătorile, cunoștințele practice și lucrul cu echipamentele ajută la identificarea surselor pierderilor și la decizii mai precise.",
             "home.project.directions.label": "Direcții de lucru",
             "home.project.direction.consult.title": "Sprijin consultativ",
-            "home.project.direction.consult.copy": "Ajutor pentru consum, costuri și soluții energetice moderne.",
+            "home.project.direction.consult.copy": "Ajutăm la înțelegerea consumului, costurilor și măsurilor pentru creșterea eficienței energetice.",
             "home.project.direction.audit.title": "Audituri energetice",
-            "home.project.direction.audit.copy": "Analizăm consumul, identificăm pierderile și pregătim recomandări.",
+            "home.project.direction.audit.copy": "Analizăm consumul de energie, identificăm pierderile și pregătim recomandări practice.",
             "home.project.direction.training.title": "Instruirea specialiștilor",
             "home.project.direction.training.copy": "Combinăm teoria, practica și lucrul cu obiecte reale.",
-            "home.project.direction.equipment.title": "Lucrul cu echipamente",
-            "home.project.direction.equipment.copy": "Prezentăm echipamente de măsurare, demonstrație și instruire.",
+            "home.project.direction.equipment.title": "Practică cu echipamente",
+            "home.project.direction.equipment.copy": "Învățăm să lucrăm cu echipamente de măsurare, demonstrație și instruire.",
             "home.work.label": "Direcții de lucru",
             "home.work.title": "Înțelegem sistemul. Găsim pierderile. Acționăm mai precis.",
-            "home.work.copy": "De la audit și instruire la echipamente, materiale și sprijin de specialitate.",
+            "home.work.copy": "Audituri energetice, instruire practică, lucru cu echipamente și sprijin de specialitate — direcțiile principale ale Green Energy Hub.",
             "home.work.audit": "Audituri energetice",
-            "home.work.audit.copy": "Identificăm consumul, pierderile și punctele care pot fi îmbunătățite.",
+            "home.work.audit.copy": "Analizăm consumul de energie, identificăm pierderile și stabilim oportunități pentru creșterea eficienței energetice.",
             "home.work.audit.cta": "Audituri energetice",
             "home.work.training": "Instruirea specialiștilor",
             "home.work.training.copy": "Teorie, practică și lucru cu obiecte reale.",
             "home.work.equipment": "Lucrul cu echipamente",
-            "home.work.equipment.copy": "Echipamente de măsurare, demonstrație și instruire în practică.",
+            "home.work.equipment.copy": "Echipamente de măsurare, demonstrație și instruire folosite în practică.",
             "home.work.support": "Sprijin de specialitate",
-            "home.work.support.copy": "Ajutăm la decizii privind consumul și eficiența energetică.",
+            "home.work.support.copy": "Ajutăm la găsirea unor soluții argumentate pentru consum și eficiență energetică.",
             "home.work.cta": "Toate direcțiile",
             "home.business.label": "Pentru afaceri",
             "home.business.title": "Eficiența energetică începe cu o imagine clară.",
@@ -222,12 +222,12 @@
             "home.news.cta": "Toate știrile",
             "home.read": "Detalii",
             "home.opps.label": "Oportunități actuale",
-            "home.opps.title": "Următorul pas poate începe aici.",
+            "home.opps.title": "Oportunități de care puteți beneficia acum.",
             "home.opps.cta": "Toate oportunitățile",
             "home.details": "Detalii",
             "home.partners.label": "Parteneri",
-            "home.partners.title": "Mai puternici împreună.",
-            "home.partners.copy": "O rețea de organizații care contribuie la eficiența energetică și expertiza locală.",
+            "home.partners.title": "Expertiza ne unește.",
+            "home.partners.copy": "Green Energy Hub colaborează cu organizații care contribuie la dezvoltarea expertizei, instruirii și soluțiilor practice în eficiență energetică.",
             "home.partners.cta": "Toți partenerii",
             "home.contact.label": "Contacte",
             "home.contact.title": "Sunteți gata să înțelegeți energia?",
@@ -241,12 +241,12 @@
             "placeholder.excerpt": "Aici va apărea un scurt rezumat.",
             "placeholder.opportunity.type": "INSTRUIRE",
             "placeholder.opportunity.type2": "CONCURS",
-            "placeholder.opportunity.type3": "PARTENERIAT",
+            "placeholder.opportunity.type3": "SCHIMB DE EXPERIENȚĂ",
             "placeholder.opportunity1": "Denumirea oportunității",
             "placeholder.opportunity2": "Denumirea oportunității",
             "placeholder.opportunity3": "Denumirea oportunității",
             "placeholder.opportunity.copy": "Scurtă descriere a ofertei sau programului.",
-            "placeholder.deadline": "Termen: data",
+            "placeholder.deadline": "Depuneți cererea până la [data]",
             "footer.description": "Centru de expertiză și soluții practice în eficiență energetică.",
             "footer.menu": "Meniu",
             "footer.contact": "Contacte",
@@ -282,55 +282,55 @@
             "home.copy": "A platform for businesses, specialists and organisations where practical knowledge supports better energy use, lower energy costs and modern efficiency solutions.",
             "home.about": "About the project",
             "home.opportunities": "Opportunities",
-            "home.process.label": "How the hub works",
+            "home.process.label": "How we work",
             "home.process.measure": "Measure",
             "home.process.measure.copy": "energy use",
-            "home.process.understand": "Understand",
+            "home.process.understand": "Analyse",
             "home.process.understand.copy": "where losses occur",
-            "home.process.learn": "Train",
-            "home.process.learn.copy": "specialists through practice",
-            "home.process.act": "Implement",
-            "home.process.act.copy": "informed solutions",
+            "home.process.learn": "Find a solution",
+            "home.process.learn.copy": "what can be changed",
+            "home.process.act": "Apply",
+            "home.process.act.copy": "solutions in practice",
             "home.process.note": "From data — to practical action.",
-            "home.focus.label": "The hub focus",
+            "home.focus.label": "Key directions",
             "home.focus.efficiency": "Energy efficiency",
             "home.focus.audit": "Energy assessments",
             "home.focus.training": "Practical training",
             "home.project.label": "About the project",
             "home.project.eyebrow": "The project mission",
-            "home.project.title": "Making energy-efficiency knowledge and solutions more accessible.",
-            "home.project.copy": "Green Energy Hub helps businesses and specialists move from understanding energy use to practical action: analysis, training and implementation.",
-            "home.project.cta": "For business",
+            "home.project.title": "Making energy efficiency clear and applicable.",
+            "home.project.copy": "Green Energy Hub helps businesses and specialists move from understanding energy use to practical action: analysing consumption, finding losses and choosing informed solutions.",
+            "home.project.cta": "More about Green Energy Hub",
             "home.project.hub.label": "Centre of expertise",
             "home.project.hub.title": "Green Energy Hub",
-            "home.project.hub.copy": "A centre for expertise, practical learning and consultation in energy efficiency and renewable energy.",
+            "home.project.hub.copy": "A centre for expertise, practical learning and support in energy efficiency and renewable energy.",
             "home.project.tag.expertise": "Expertise",
             "home.project.tag.practice": "Practice",
             "home.project.tag.support": "Support",
             "home.project.practice.label": "Practical approach",
             "home.project.practice.title": "Solutions start with understanding.",
-            "home.project.practice.copy": "Measurement, equipment and knowledge help identify losses and act with greater precision.",
+            "home.project.practice.copy": "Measurement, practical knowledge and work with equipment help identify sources of loss and make more precise decisions.",
             "home.project.directions.label": "What we do",
             "home.project.direction.consult.title": "Consultation support",
-            "home.project.direction.consult.copy": "Support with energy use, costs and modern energy solutions.",
+            "home.project.direction.consult.copy": "We help clarify energy use, costs and measures for improving energy efficiency.",
             "home.project.direction.audit.title": "Energy assessments",
-            "home.project.direction.audit.copy": "We analyse use, identify losses and prepare recommendations.",
+            "home.project.direction.audit.copy": "We analyse energy use, identify losses and prepare practical recommendations.",
             "home.project.direction.training.title": "Specialist training",
             "home.project.direction.training.copy": "We connect theory, practice and work with real sites.",
-            "home.project.direction.equipment.title": "Equipment in practice",
-            "home.project.direction.equipment.copy": "We introduce measurement, demonstration and training equipment.",
+            "home.project.direction.equipment.title": "Equipment practice",
+            "home.project.direction.equipment.copy": "We learn to work with measurement, demonstration and training equipment.",
             "home.work.label": "What we do",
             "home.work.title": "Understand the system. Find the losses. Act with precision.",
-            "home.work.copy": "From audits and training to equipment, resources and expert support.",
+            "home.work.copy": "Energy assessments, practical training, equipment work and expert support — the core directions of Green Energy Hub.",
             "home.work.audit": "Energy assessments",
-            "home.work.audit.copy": "We identify consumption, losses and opportunities for improvement.",
+            "home.work.audit.copy": "We analyse energy use, identify losses and define opportunities to improve energy efficiency.",
             "home.work.audit.cta": "Energy audits",
             "home.work.training": "Specialist training",
             "home.work.training.copy": "Theory, practice and work with real sites.",
             "home.work.equipment": "Equipment in practice",
-            "home.work.equipment.copy": "Measurement, demonstration and learning equipment used in practice.",
+            "home.work.equipment.copy": "Measurement, demonstration and training equipment used in practice.",
             "home.work.support": "Expert support",
-            "home.work.support.copy": "Support for decisions around energy use and efficiency.",
+            "home.work.support.copy": "We help find informed solutions for energy use and energy efficiency.",
             "home.work.cta": "All directions",
             "home.business.label": "For business",
             "home.business.title": "Energy efficiency starts with a clear picture.",
@@ -350,12 +350,12 @@
             "home.news.cta": "All news",
             "home.read": "Read more",
             "home.opps.label": "Current opportunities",
-            "home.opps.title": "The next step can start here.",
+            "home.opps.title": "Opportunities you can use now.",
             "home.opps.cta": "All opportunities",
             "home.details": "Details",
             "home.partners.label": "Partners",
-            "home.partners.title": "Stronger together.",
-            "home.partners.copy": "A network of organisations helping develop energy efficiency and local expertise.",
+            "home.partners.title": "Expertise brings us together.",
+            "home.partners.copy": "Green Energy Hub works with organisations that help develop expertise, training and practical solutions in energy efficiency.",
             "home.partners.cta": "All partners",
             "home.contact.label": "Contact",
             "home.contact.title": "Ready to understand your energy?",
@@ -369,12 +369,12 @@
             "placeholder.excerpt": "A short publication summary will appear here.",
             "placeholder.opportunity.type": "TRAINING",
             "placeholder.opportunity.type2": "COMPETITION",
-            "placeholder.opportunity.type3": "PARTNERSHIP",
+            "placeholder.opportunity.type3": "EXPERIENCE EXCHANGE",
             "placeholder.opportunity1": "Opportunity name",
             "placeholder.opportunity2": "Opportunity name",
             "placeholder.opportunity3": "Opportunity name",
             "placeholder.opportunity.copy": "A short description of the offer or programme.",
-            "placeholder.deadline": "Deadline: date",
+            "placeholder.deadline": "Apply by [date]",
             "footer.description": "A centre for expertise and practical solutions in energy efficiency.",
             "footer.menu": "Menu",
             "footer.contact": "Contact",
@@ -387,6 +387,10 @@
     };
 
     const storageKey = "green-energy-hub-language";
+    const urlParameters = new URLSearchParams(window.location.search);
+    const isLocalQualityAudit = urlParameters.get("qa") === "1"
+        && (window.location.hostname === "green.local" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+    if (isLocalQualityAudit) document.documentElement.dataset.qaMode = "true";
 
     function setLanguage(language) {
         const locale = dictionary[language] ? language : "ru";
@@ -423,6 +427,8 @@
         } catch (error) {
             // Use Russian by default when storage is unavailable.
         }
+        const requestedLanguage = urlParameters.get("lang");
+        if (requestedLanguage && dictionary[requestedLanguage]) savedLanguage = requestedLanguage;
         setLanguage(savedLanguage);
 
         document.querySelectorAll("[data-language]").forEach((button) => {
@@ -455,6 +461,18 @@
             updateHeroParallax();
             window.addEventListener("scroll", requestHeroParallax, { passive: true });
             window.addEventListener("resize", requestHeroParallax, { passive: true });
+        }
+
+        const opportunityFilter = document.querySelector("[data-opportunity-filter]");
+        if (opportunityFilter) {
+            const opportunityCards = [...document.querySelectorAll("[data-opportunity-card]")];
+            const updateOpportunityFilter = () => {
+                opportunityCards.forEach((card) => {
+                    card.classList.toggle("is-filtered-out", opportunityFilter.checked && card.dataset.status === "closed");
+                });
+            };
+            opportunityFilter.addEventListener("change", updateOpportunityFilter);
+            updateOpportunityFilter();
         }
 
         const menuButton = document.querySelector("[data-menu-toggle]");
@@ -540,5 +558,56 @@
                 updateMenuState(false);
             });
         });
+
+        if (isLocalQualityAudit && urlParameters.get("qa-menu") === "open" && window.matchMedia("(max-width: 900px)").matches) {
+            menu.classList.add("is-open");
+            setPageScrollLock(true);
+            updateMenuState(true);
+        }
+
+        if (isLocalQualityAudit) {
+            const spreadFor = (selector, property) => {
+                const values = [...document.querySelectorAll(selector)]
+                    .filter((element) => element.offsetParent !== null)
+                    .map((element) => element.getBoundingClientRect()[property]);
+                return values.length > 1 ? Math.max(...values) - Math.min(...values) : 0;
+            };
+
+            const runLayoutAudit = () => {
+                const root = document.documentElement;
+                const header = document.querySelector(".site-header__inner");
+                const firstInternalContainer = document.querySelector("main > .page-section--intro > .container");
+                const menuBounds = menu.getBoundingClientRect();
+                const menuIsOpen = menu.classList.contains("is-open");
+                const horizontalOverflow = Math.max(0, root.scrollWidth - root.clientWidth);
+                const headerGap = header && firstInternalContainer
+                    ? firstInternalContainer.getBoundingClientRect().top - header.getBoundingClientRect().bottom
+                    : null;
+                const menuMatchesViewport = !menuIsOpen || (
+                    Math.abs(menuBounds.left) <= 1
+                    && Math.abs(menuBounds.top) <= 1
+                    && Math.abs(menuBounds.width - window.innerWidth) <= 1
+                    && Math.abs(menuBounds.height - window.innerHeight) <= 1
+                );
+
+                root.dataset.qaReady = "true";
+                root.dataset.qaViewportWidth = window.innerWidth.toFixed(2);
+                root.dataset.qaViewportHeight = window.innerHeight.toFixed(2);
+                root.dataset.qaHorizontalOverflow = horizontalOverflow.toFixed(2);
+                root.dataset.qaHeaderGap = headerGap === null ? "na" : headerGap.toFixed(2);
+                root.dataset.qaHeaderBottom = header ? header.getBoundingClientRect().bottom.toFixed(2) : "na";
+                root.dataset.qaFirstContentTop = firstInternalContainer ? firstInternalContainer.getBoundingClientRect().top.toFixed(2) : "na";
+                root.dataset.qaMenuViewport = String(menuMatchesViewport);
+                root.dataset.qaScrollLock = String(!menuIsOpen || (root.classList.contains("menu-open") && document.body.classList.contains("menu-open")));
+                root.dataset.qaNewsWidthSpread = spreadFor(".page-news-card", "width").toFixed(2);
+                root.dataset.qaNewsMediaSpread = spreadFor(".page-news-card__media", "height").toFixed(2);
+                root.dataset.qaOpportunityWidthSpread = spreadFor(".page-opportunity-card", "width").toFixed(2);
+                root.dataset.qaOpportunityMediaSpread = spreadFor(".page-opportunity-card__media", "height").toFixed(2);
+            };
+
+            window.requestAnimationFrame(runLayoutAudit);
+            window.addEventListener("load", () => window.requestAnimationFrame(runLayoutAudit), { once: true });
+            if (document.fonts?.ready) document.fonts.ready.then(() => window.requestAnimationFrame(runLayoutAudit));
+        }
     });
 })();

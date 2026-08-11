@@ -9,11 +9,12 @@
             </div>
             <div class="site-footer__column">
                 <span class="site-footer__label" data-i18n="footer.menu">Меню</span>
-                <a href="{{ route('about') }}" data-i18n="nav.about">О проекте</a>
+                <a href="{{ route('about.project') }}" data-i18n="nav.about">О проекте</a>
                 <a href="{{ route('business') }}" data-i18n="nav.business">Для бизнеса</a>
                 <a href="{{ route('news') }}" data-i18n="nav.news">Новости</a>
                 <a href="{{ route('stories') }}" data-i18n="nav.opportunities">Возможности</a>
-                <a href="{{ route('media') }}" data-i18n="nav.media">Медиа</a>
+                <a href="{{ route('media.photos') }}" data-i18n="nav.media">Медиа</a>
+                <a href="{{ route('partners') }}" data-i18n="nav.partners">Партнёры</a>
             </div>
             <div class="site-footer__column">
                 <span class="site-footer__label" data-i18n="footer.contact">Контакты</span>
@@ -21,6 +22,11 @@
                 <span data-i18n="footer.phone">Телефон: placeholder</span>
                 <span data-i18n="footer.email">E-mail: placeholder</span>
                 <a href="{{ route('contacts') }}" data-i18n="home.contact.cta">Контакты <span aria-hidden="true">→</span></a>
+                <div class="footer-socials" aria-label="Social media">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">YouTube</a>
+                </div>
             </div>
         </div>
         <div class="site-footer__bottom">
