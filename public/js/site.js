@@ -475,6 +475,77 @@
             updateOpportunityFilter();
         }
 
+        const lightboxRoot = document.querySelector("[data-image-lightbox]");
+        if (lightboxRoot) {
+            const lightboxCopy = {
+                ru: { open: "Открыть изображение", close: "Закрыть изображение" },
+                ro: { open: "Deschide imaginea", close: "Închide imaginea" },
+                en: { open: "Open image", close: "Close image" },
+            };
+            const locale = document.documentElement.dataset.locale || "ru";
+            const copy = lightboxCopy[locale] || lightboxCopy.ru;
+            const lightbox = document.createElement("div");
+            const lightboxImage = document.createElement("img");
+            const closeButton = document.createElement("button");
+            let lastTrigger = null;
+
+            lightbox.className = "article-lightbox";
+            lightbox.hidden = true;
+            lightbox.setAttribute("role", "dialog");
+            lightbox.setAttribute("aria-modal", "true");
+            lightbox.setAttribute("aria-label", copy.open);
+            lightboxImage.className = "article-lightbox__image";
+            lightboxImage.alt = "";
+            closeButton.className = "article-lightbox__close";
+            closeButton.type = "button";
+            closeButton.setAttribute("aria-label", copy.close);
+            closeButton.textContent = "×";
+            lightbox.append(lightboxImage, closeButton);
+            document.body.append(lightbox);
+
+            const closeLightbox = () => {
+                if (lightbox.hidden) return;
+                lightbox.hidden = true;
+                lightboxImage.removeAttribute("src");
+                document.body.classList.remove("image-lightbox-open");
+                lastTrigger?.focus();
+            };
+
+            const openLightbox = (trigger) => {
+                const image = trigger.querySelector("img");
+                const source = image?.currentSrc || image?.src;
+                if (!source) return;
+
+                lastTrigger = trigger;
+                lightboxImage.src = source;
+                lightbox.hidden = false;
+                document.body.classList.add("image-lightbox-open");
+                closeButton.focus();
+            };
+
+            const imageTargets = lightboxRoot.querySelectorAll(".dynamic-article__figure-media, .dynamic-article__gallery-media, .photo-album-gallery__media");
+            imageTargets.forEach((target) => {
+                target.tabIndex = 0;
+                target.setAttribute("role", "button");
+                target.setAttribute("aria-label", copy.open);
+                target.addEventListener("click", () => openLightbox(target));
+                target.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        openLightbox(target);
+                    }
+                });
+            });
+
+            closeButton.addEventListener("click", closeLightbox);
+            lightbox.addEventListener("click", (event) => {
+                if (event.target === lightbox) closeLightbox();
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") closeLightbox();
+            });
+        }
+
         const menuButton = document.querySelector("[data-menu-toggle]");
         const menu = document.querySelector("[data-menu]");
         if (!menuButton || !menu) return;

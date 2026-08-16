@@ -1,0 +1,990 @@
+@font-face {
+    font-family: "Inter Tight";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/inter-tight/inter-tight-cyrillic-ext.woff2") format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/inter-tight/inter-tight-cyrillic.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/inter-tight/inter-tight-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/inter-tight/inter-tight-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Filament-only brand tokens. Component dimensions, radii and shadows remain native. */
+:root {
+    --font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+    --primary-50: #f7fced;
+    --primary-100: #DDF6B7;
+    --primary-200: #c8e99a;
+    --primary-300: #abd679;
+    --primary-400: #7fae5f;
+    --primary-500: #5f8f48;
+    --primary-600: #3F6B32;
+    --primary-700: #315327;
+    --primary-800: #27421f;
+    --primary-900: #1d3218;
+    --primary-950: #12220e;
+}
+
+.fi-body,
+.fi-body button,
+.fi-body input,
+.fi-body select,
+.fi-body textarea {
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+}
+
+.fi-body .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: var(--primary-100);
+    color: #111611;
+}
+
+.fi-body .fi-sidebar-item.fi-active .fi-sidebar-item-icon {
+    color: var(--primary-700);
+}
+
+.fi-body .fi-btn.fi-color-primary:not(.fi-outlined) {
+    background-color: var(--primary-600);
+    color: #fff;
+}
+
+.fi-body .fi-btn.fi-color-primary:not(.fi-outlined):hover {
+    background-color: var(--primary-700);
+}
+
+.fi-body .fi-btn.fi-color-primary.fi-outlined {
+    color: var(--primary-700);
+}
+
+.fi-body .tag-color-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fi-body .tag-color-option__swatch {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    border: 1px solid rgba(17, 22, 17, .2);
+    border-radius: 50%;
+}
+
+.fi-body .tag-color-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid rgba(17, 22, 17, 0.12);
+    border-radius: 999px;
+    color: #111611;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    white-space: nowrap;
+}
+
+.fi-page.fi-editorial-page .fi-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    box-sizing: border-box;
+    width: 100%;
+    background: color-mix(in srgb, #f8faf7 94%, transparent);
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(12px);
+}
+
+.fi-page.fi-editorial-page .fi-header.is-stuck {
+    border-bottom-color: var(--gray-200);
+    box-shadow: 0 8px 18px rgba(17, 22, 17, .05);
+}
+
+.fi-page.fi-editorial-page .fi-header .fi-breadcrumbs {
+    margin-bottom: .5rem;
+}
+
+.fi-page.fi-editorial-page .fi-header.is-stuck .fi-breadcrumbs {
+    display: none;
+}
+
+.fi-page.fi-editorial-page .fi-page-content {
+    padding-top: 1rem;
+    padding-bottom: max(8rem, 20vh);
+}
+
+.fi-page.fi-editorial-page .fi-sc-tabs {
+    --tabs-scroll-margin: 6rem;
+}
+
+.fi-page.fi-editorial-page .editorial-language-tabs {
+    width: 100%;
+}
+
+.fi-page.fi-editorial-page .editorial-language-tabs > .fi-tabs {
+    width: 100%;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fi-page.fi-editorial-page .editorial-language-tabs .fi-tabs-item {
+    min-height: 2.75rem;
+    padding: .75rem 1rem;
+    border-radius: 0;
+    color: #53605a;
+}
+
+.fi-page.fi-editorial-page .editorial-language-tabs .fi-tabs-item.fi-active {
+    background: transparent;
+    color: #04342c;
+    box-shadow: inset 0 -2px 0 #1d9e75;
+}
+
+.fi-page.fi-editorial-page .fi-sc-tabs-tab {
+    font-weight: 600;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder {
+    margin-top: 1.5rem;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder > .fi-fo-builder-items > * + * {
+    margin-top: .875rem;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder > .fi-fo-builder-block-picker {
+    margin-top: .5rem;
+}
+
+.fi-page.fi-editorial-page .fi-fo-builder-item-content .fi-fo-rich-editor,
+.fi-page.fi-editorial-page .fi-fo-builder-item-content .fi-fo-rich-editor-main {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.fi-page.fi-editorial-page .fi-fo-builder-item-content .fi-fo-rich-editor-toolbar {
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.fi-page.fi-editorial-page .fi-fo-field-wrp-label {
+    font-weight: 500;
+}
+
+/* Editorial builder: one quiet card pattern for every content type. */
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item {
+    overflow: hidden;
+    border: .5px solid var(--gray-300);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: none;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-header {
+    min-height: 48px;
+    padding: 11px 16px;
+    background: #f7f9f8;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-header-icon {
+    width: 26px;
+    height: 26px;
+    padding: 5px;
+    border-radius: 6px;
+    background: #e1f5ee;
+    color: #0f6e56;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-header-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-header-label {
+    color: #202b27;
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-content {
+    padding: 16px;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-item-has-header > .fi-fo-builder-item-content {
+    border-top: .5px solid var(--gray-200);
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-repeater-item {
+    border: .5px solid var(--gray-300);
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-repeater-item-header {
+    min-height: 38px;
+    padding: 8px 12px;
+    background: #f7f9f8;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-repeater-item-content {
+    padding: 12px;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-repeater .fi-btn-label,
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-actions .fi-btn-label {
+    color: #04342c;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-repeater .fi-btn.fi-color-gray,
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-actions .fi-btn.fi-color-gray {
+    justify-content: center;
+    width: 100%;
+    min-height: 42px;
+    border: 1px dashed #5dcaa5;
+    background: #e1f5ee;
+    box-shadow: none;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-add-between-items .fi-btn {
+    border-style: solid;
+    background: #fff;
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-builder-add-between-items .fi-btn-label {
+    color: var(--gray-700);
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-file-upload {
+    border: 1px dashed #5dcaa5;
+    border-radius: var(--radius-lg);
+}
+
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-file-upload .fi-link,
+.fi-page.fi-editorial-page .editorial-content-builder .fi-fo-file-upload a {
+    color: #0f6e56;
+}
+
+/* Image + text presets keep the two editing surfaces balanced on desktop and
+ * collapse to the selected order on narrow screens. The Grid component owns
+ * the columns; this class only supplies the editorial spacing and a stable
+ * upload minimum so an empty dropzone remains usable. */
+.fi-page.fi-editorial-page .editorial-image-text-block {
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.fi-page.fi-editorial-page .editorial-image-text-block .editorial-image-text-upload,
+.fi-page.fi-editorial-page .editorial-image-text-block .fi-fo-rich-editor {
+    min-width: 0;
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    .fi-page.fi-editorial-page .editorial-image-text-block {
+        gap: .875rem;
+    }
+}
+
+/* Fixed gallery cells use a complete, centred drop target from the first render. */
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--drop-label,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--drop-label,
+.fi-page.fi-album-page .album-photo-upload .filepond--drop-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto !important;
+}
+
+/*
+ * FilePond's upload status is useful only while a file is processing. Once it
+ * is complete, show the photograph itself; keep the floating edit/remove
+ * controls available rather than leaving a green status layer over the image.
+ */
+.fi-panel-admin .fi-fo-file-upload [data-filepond-item-state*="processing-complete"] .filepond--file-info,
+.fi-panel-admin .fi-fo-file-upload [data-filepond-item-state*="processing-complete"] .filepond--file-status,
+.fi-panel-admin .fi-fo-file-upload [data-filepond-item-state*="processing-complete"] .filepond--image-preview-overlay {
+    display: none;
+}
+
+.fi-panel-admin .fi-fo-file-upload [data-filepond-item-state*="processing-complete"] .filepond--item-panel {
+    background: transparent;
+}
+
+/* Every image upload uses the ratio configured by FilamentImageUpload. The
+ * empty state and the completed item therefore occupy the same frame. */
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--root,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--root,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--root,
+.fi-page.fi-album-page .album-cover-upload .filepond--root,
+.fi-page.fi-album-page .album-photo-upload .filepond--root {
+    width: 100%;
+    max-width: 100%;
+}
+
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--drop-label,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--drop-label,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--drop-label,
+.fi-page.fi-album-page .album-cover-upload .filepond--drop-label,
+.fi-page.fi-album-page .album-photo-upload .filepond--drop-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto !important;
+    margin: 0;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-vector,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-bitmap,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-vector {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* A gallery is an image grid, not a file list: only image and controls remain. */
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--file-info,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--file-status,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--image-preview-overlay,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--file-info,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--file-status,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-preview-overlay,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--file-info,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--file-status,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-preview-overlay,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--file-info,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--file-status,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--image-preview-overlay,
+.fi-page.fi-album-page .album-photo-upload .filepond--file-info,
+.fi-page.fi-album-page .album-photo-upload .filepond--file-status,
+.fi-page.fi-album-page .album-photo-upload .filepond--image-preview-overlay {
+    display: none;
+}
+
+/* Uploaded gallery items must occupy the same fixed cell as their drop target. */
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--list-scroller,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--list,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--item,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--file-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--image-preview-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--list-scroller,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--list,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--item,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--file-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-preview-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--list-scroller,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--list,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--item,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--file-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-preview-wrapper,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--list-scroller,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--list,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--item,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--file-wrapper,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-preview-wrapper,
+.fi-page.fi-album-page .album-cover-upload .filepond--list-scroller,
+.fi-page.fi-album-page .album-cover-upload .filepond--list,
+.fi-page.fi-album-page .album-cover-upload .filepond--item,
+.fi-page.fi-album-page .album-cover-upload .filepond--file-wrapper,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-preview-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--list-scroller,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--list,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--item,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--file-wrapper,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--image-preview-wrapper,
+.fi-page.fi-album-page .album-photo-upload .filepond--list-scroller,
+.fi-page.fi-album-page .album-photo-upload .filepond--list,
+.fi-page.fi-album-page .album-photo-upload .filepond--item,
+.fi-page.fi-album-page .album-photo-upload .filepond--file-wrapper,
+.fi-page.fi-album-page .album-photo-upload .filepond--image-preview-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--image-clip,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-clip,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-clip,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-clip,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-clip,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--image-clip,
+.fi-page.fi-album-page .album-photo-upload .filepond--image-clip {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--landscape .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--article .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--image-text .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-cover-upload .filepond--image-vector,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-bitmap,
+.fi-page.fi-album-page .album-cover-upload .filepond--image-vector,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--image-bitmap,
+.fi-page.fi-editorial-page .editorial-image-upload--portrait .filepond--image-vector,
+.fi-page.fi-album-page .album-photo-upload .filepond--image-bitmap,
+.fi-page.fi-album-page .album-photo-upload .filepond--image-vector {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Photo albums use the same fixed grid as their public page. */
+.fi-page.fi-album-page .album-photo-manager .fi-fo-repeater-item {
+    min-width: 0;
+}
+
+.fi-page.fi-album-page .album-photo-manager .fi-fo-repeater-item-content {
+    padding: 10px;
+}
+
+/* Editorial covers are secondary metadata in the form, so keep them compact
+ * on desktop while preserving a comfortable full-width target on mobile. */
+@media (min-width: 768px) {
+    .fi-page.fi-editorial-page .editorial-cover-upload,
+    .fi-page.fi-album-page .album-cover-upload {
+        width: 33.3333%;
+        max-width: 33.3333%;
+        justify-self: start;
+    }
+}
+
+@media (max-width: 767px) {
+    .fi-page.fi-editorial-page .editorial-cover-upload,
+    .fi-page.fi-album-page .album-cover-upload {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Every resource table switches to Filament's card-like mobile layout. Keep
+ * the table inside the viewport when translated titles, statuses or actions
+ * contain long text. Desktop keeps the native horizontal table layout. */
+@media (max-width: 639px) {
+    .fi-panel-admin .fi-ta-content-ctn {
+        min-width: 0;
+    }
+
+    .fi-panel-admin .fi-ta-table.fi-ta-table-stacked-on-mobile {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+    }
+
+    .fi-panel-admin .fi-ta-table.fi-ta-table-stacked-on-mobile .fi-ta-cell,
+    .fi-panel-admin .fi-ta-table.fi-ta-table-stacked-on-mobile .fi-ta-header-cell {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .fi-panel-admin .fi-ta-table.fi-ta-table-stacked-on-mobile .fi-ta-cell-content,
+    .fi-panel-admin .fi-ta-table.fi-ta-table-stacked-on-mobile .fi-ta-header-cell-content {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        white-space: normal;
+    }
+}
+
+/* Mobile navigation is a real off-canvas layer. Keep it and its backdrop
+ * above sticky editorial headers, so form titles and actions never bleed
+ * through the open menu or remain clickable underneath it. */
+@media (max-width: 1023px) {
+    .fi-panel-admin .fi-sidebar-close-overlay {
+        z-index: 55;
+        background: rgb(17 22 17 / 42%);
+    }
+
+    .fi-panel-admin .fi-sidebar {
+        z-index: 60;
+        isolation: isolate;
+        background: #fff;
+        box-shadow: 0 18px 48px rgb(17 22 17 / 18%);
+    }
+
+    .fi-panel-admin .fi-topbar-ctn {
+        z-index: 40;
+    }
+
+    .fi-page.fi-editorial-page .fi-header {
+        z-index: 20;
+    }
+
+    .fi-panel-admin:has(.fi-sidebar.fi-sidebar-open) {
+        overflow: hidden;
+    }
+}
+
+/* Dashboard: one useful status surface, without extra nested cards. */
+.fi-panel-admin .hub-dashboard-operations__surface {
+    padding: 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    background: #fff;
+}
+
+.fi-panel-admin .hub-dashboard-operations__header,
+.fi-panel-admin .hub-dashboard-operations__recent-heading,
+.fi-panel-admin .hub-dashboard-operations__recent-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.fi-panel-admin .hub-dashboard-operations__eyebrow,
+.fi-panel-admin .hub-dashboard-operations__check p,
+.fi-panel-admin .hub-dashboard-operations__recent-type {
+    margin: 0;
+    color: var(--gray-500);
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.fi-panel-admin .hub-dashboard-operations h2,
+.fi-panel-admin .hub-dashboard-operations h3 {
+    margin: .25rem 0 0;
+    color: #111611;
+    font-weight: 600;
+}
+
+.fi-panel-admin .hub-dashboard-operations h2 {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations h3 {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ready {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--gray-600);
+    font-size: .875rem;
+    white-space: nowrap;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ready span {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 999px;
+    background: var(--primary-500);
+    box-shadow: 0 0 0 4px var(--primary-50);
+}
+
+.fi-panel-admin .hub-dashboard-operations__checks {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__check {
+    display: grid;
+    align-content: start;
+    gap: .375rem;
+    min-width: 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__check strong {
+    color: #111611;
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__check span,
+.fi-panel-admin .hub-dashboard-operations__recent-heading > span,
+.fi-panel-admin .hub-dashboard-operations__empty {
+    margin: 0;
+    color: var(--gray-600);
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__check a {
+    width: fit-content;
+    margin-top: .25rem;
+    color: var(--primary-700);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent {
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-list {
+    display: grid;
+    margin-top: .75rem;
+    border-top: 1px solid var(--gray-100);
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-item {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr) auto auto;
+    gap: .75rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid var(--gray-100);
+    color: inherit;
+    text-decoration: none;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-item:hover .hub-dashboard-operations__recent-title {
+    color: var(--primary-700);
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-title {
+    overflow: hidden;
+    color: #111611;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-status,
+.fi-panel-admin .hub-dashboard-operations__recent-item time {
+    color: var(--gray-600);
+    font-size: .8125rem;
+    white-space: nowrap;
+}
+
+.fi-panel-admin .hub-dashboard-operations__empty {
+    padding-top: .75rem;
+}
+
+@media (max-width: 767px) {
+    .fi-panel-admin .hub-dashboard-operations__header,
+    .fi-panel-admin .hub-dashboard-operations__recent-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .fi-panel-admin .hub-dashboard-operations__checks {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .fi-panel-admin .hub-dashboard-operations__recent-item {
+        grid-template-columns: 1fr auto;
+        gap: .25rem .75rem;
+    }
+
+    .fi-panel-admin .hub-dashboard-operations__recent-type {
+        grid-column: 1 / -1;
+    }
+
+    .fi-panel-admin .hub-dashboard-operations__recent-status {
+        display: none;
+    }
+}
+
+/* Dashboard: compact operational flow, without status-card nesting. */
+.fi-panel-admin .hub-dashboard-operations__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 22rem));
+    gap: .75rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .375rem;
+    min-height: 2.5rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-lg);
+    color: #111611;
+    font-size: .875rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.fi-panel-admin .hub-dashboard-operations__action:hover {
+    border-color: #3f6b32;
+    background: #ddf6b7;
+}
+
+.fi-panel-admin .hub-dashboard-operations__action span {
+    font-size: 1.125rem;
+    line-height: 1;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    background: #f8dc9d;
+    color: #513812;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai.is-ready {
+    background: #ddf6b7;
+    color: #173319;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai strong,
+.fi-panel-admin .hub-dashboard-operations__ai p {
+    margin: 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai strong {
+    display: block;
+    font-size: .875rem;
+    font-weight: 650;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai p {
+    margin-top: .125rem;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__ai a {
+    color: inherit;
+    font-size: .875rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent {
+    margin-top: 1.75rem;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-heading {
+    padding-bottom: .625rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-heading h2 {
+    margin: 0;
+    color: #111611;
+    font-size: 1.125rem;
+    font-weight: 650;
+    line-height: 1.5rem;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-list {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .125rem 1rem;
+    padding: .75rem 0;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-type,
+.fi-panel-admin .hub-dashboard-operations__recent-title {
+    grid-column: 1;
+}
+
+.fi-panel-admin .hub-dashboard-operations__recent-item time {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+}
+
+@media (max-width: 767px) {
+    .fi-panel-admin .hub-dashboard-operations__actions {
+        grid-template-columns: 1fr;
+    }
+
+    .fi-panel-admin .hub-dashboard-operations__ai {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* Admin 404: a useful recovery page, not a dead-end error screen. */
+.fi-panel-admin .hub-admin-not-found {
+    width: 100%;
+}
+
+.fi-panel-admin .hub-admin-not-found__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100%, 52rem);
+    margin: 0 auto;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.fi-panel-admin .hub-admin-not-found__section {
+    color: var(--gray-500);
+    font-size: .8125rem;
+    font-weight: 600;
+}
+
+.fi-panel-admin .hub-admin-not-found__main {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: min(100%, 52rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 9vw, 7rem) clamp(1rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.fi-panel-admin .hub-admin-not-found__visual {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.fi-panel-admin .hub-admin-not-found__visual span {
+    color: var(--primary-700);
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 600;
+    letter-spacing: -.08em;
+    line-height: .9;
+}
+
+.fi-panel-admin .hub-admin-not-found__visual i {
+    width: .625rem;
+    height: .625rem;
+    margin: 1.75rem 0 0 .75rem;
+    border-radius: 999px;
+    background: var(--primary-500);
+    box-shadow: 0 0 0 .5rem var(--primary-50);
+}
+
+.fi-panel-admin .hub-admin-not-found__eyebrow {
+    margin: 0 0 .5rem;
+    color: var(--gray-500);
+    font-size: .8125rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.fi-panel-admin .hub-admin-not-found h1 {
+    max-width: 38rem;
+    margin: 0;
+    color: #111611;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1.05;
+    text-wrap: balance;
+}
+
+.fi-panel-admin .hub-admin-not-found__description {
+    max-width: 34rem;
+    margin: 1.25rem 0 0;
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.fi-panel-admin .hub-admin-not-found__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 2rem;
+}
+
+.fi-panel-admin .hub-admin-not-found__hint {
+    max-width: 34rem;
+    margin: 2rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
+    color: var(--gray-500);
+    font-size: .8125rem;
+    line-height: 1.25rem;
+}
+
+@media (max-width: 640px) {
+    .fi-panel-admin .hub-admin-not-found__header {
+        padding-inline: 1rem;
+    }
+
+    .fi-panel-admin .hub-admin-not-found__main {
+        padding-inline: 1rem;
+    }
+
+    .fi-panel-admin .hub-admin-not-found__actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fi-panel-admin .hub-admin-not-found__actions .fi-btn {
+        justify-content: center;
+        width: 100%;
+    }
+}

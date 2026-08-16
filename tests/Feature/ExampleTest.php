@@ -45,15 +45,17 @@ class ExampleTest extends TestCase
         $this->get('/')
             ->assertSee('class="news-card"', false)
             ->assertSee('class="opportunity-card"', false)
+            ->assertSee('href="'.route('news').'"', false)
+            ->assertSee('href="'.route('stories').'"', false)
             ->assertDontSee('page-news-card', false)
             ->assertDontSee('page-opportunity-card', false);
 
         $this->get('/news')
-            ->assertSee('page-news-card', false)
+            ->assertSee('dynamic-empty-state', false)
             ->assertDontSee('class="news-card', false);
 
         $this->get('/stories')
-            ->assertSee('page-opportunity-card', false)
+            ->assertSee('dynamic-empty-state', false)
             ->assertDontSee('class="opportunity-card', false);
     }
 
@@ -64,10 +66,13 @@ class ExampleTest extends TestCase
         $this->get('/media/videos')->assertOk()->assertSee('Смотреть, как работает практика.', false);
         $this->get('/media/catalogues')->assertOk()->assertSee('Каталоги', false);
 
+        foreach (['/media/photos', '/media/videos', '/media/catalogues'] as $path) {
+            $this->get($path)
+                ->assertDontSee('media-switcher', false)
+                ->assertDontSee('media-tabs', false);
+        }
+
         $this->get('/media/photos')
-            ->assertSee('media-switcher', false)
-            ->assertDontSee('media-tabs', false)
-            ->assertDontSee('page-section__header--row', false)
             ->assertDontSee('href="/media#', false)
             ->assertDontSee('id="videos"', false)
             ->assertDontSee('id="catalogues"', false);

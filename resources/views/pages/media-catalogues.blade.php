@@ -3,8 +3,6 @@
 @section('content')
 <section class="page-section page-section--intro">
     <div class="container">
-        @include('partials.media-tabs', ['active' => 'catalogues'])
-
         <div class="page-section__header">
             <span class="section-marker">
                 <span class="locale-copy locale-copy--ru">Публикации проекта</span>
