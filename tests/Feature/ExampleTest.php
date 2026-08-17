@@ -33,6 +33,15 @@ class ExampleTest extends TestCase
         }
     }
 
+    public function test_navigation_has_icon_home_link_with_mobile_label(): void
+    {
+        $this->get('/')
+            ->assertSee('class="navigation__home"', false)
+            ->assertSee('href="'.route('home').'"', false)
+            ->assertSee('data-i18n="nav.home"', false)
+            ->assertSee('Главная');
+    }
+
     public function test_internal_pages_start_with_content_instead_of_a_photo_hero(): void
     {
         foreach (self::INTERNAL_PAGES as $path) {
@@ -40,6 +49,19 @@ class ExampleTest extends TestCase
                 ->assertSee('page-section--intro', false)
                 ->assertDontSee('page-hero', false);
         }
+    }
+
+    public function test_contacts_page_contains_the_styled_google_map_embed(): void
+    {
+        $this->get('/contacts')
+            ->assertOk()
+            ->assertSee('class="map-card__embed"', false)
+            ->assertSee('https://www.google.com/maps/embed?pb=', false)
+            ->assertSee('title="Карта расположения Green Energy Hub"', false)
+            ->assertSee('MD - 3000 Тирасполь ул. Свердлова 57')
+            ->assertSee('533 80988')
+            ->assertSee('info@education.md')
+            ->assertDontSee('class="social-links"', false);
     }
 
     public function test_home_and_internal_feed_cards_use_isolated_components(): void

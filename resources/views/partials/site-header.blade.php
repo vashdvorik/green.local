@@ -14,6 +14,12 @@
         </button>
 
         <nav class="navigation" id="primary-menu" data-menu aria-label="Основная навигация">
+            <a class="navigation__home" href="{{ route('home') }}" aria-label="На главную">
+                <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                    <path d="m3.5 10.5 8.5-7 8.5 7M5.5 9.5v10h13v-10M9.5 19.5v-5h5v5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" />
+                </svg>
+                <span class="navigation__home-label" data-i18n="nav.home">Главная</span>
+            </a>
             <div class="navigation__dropdown" data-dropdown>
                 <button class="navigation__dropdown-toggle" type="button" data-dropdown-toggle aria-expanded="false" aria-haspopup="true">
                     <span data-i18n="nav.about">О проекте</span>

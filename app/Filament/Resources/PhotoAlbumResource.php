@@ -64,6 +64,7 @@ class PhotoAlbumResource extends Resource
                 ->activeTab(1)
                 ->extraAttributes(['class' => 'album-language-tabs'])
                 ->tabs([
+                    static::photoTab(),
                     static::localeTab('ru', 'Русский', true),
                     static::localeTab('ro', 'Română'),
                     static::localeTab('en', 'English'),
@@ -144,20 +145,23 @@ class PhotoAlbumResource extends Resource
                 ->rows(3)
                 ->maxLength(240)
                 ->columnSpanFull(),
-            ContentBlocks::schema(
-                "content.{$locale}",
-                allowedBlocks: ['image', 'gallery_2', 'gallery_3', 'gallery_4'],
-            ),
         ];
 
-        if ($isRussian) {
-            $fields[] = static::photoUpload('cover_image', 'album-cover-upload')
+        return Tab::make($label)->schema($fields);
+    }
+
+    protected static function photoTab(): Tab
+    {
+        return Tab::make('Фото')->schema([
+            static::photoUpload('cover_image', 'album-cover-upload')
                 ->label('Обложка альбома')
                 ->helperText('Если не загрузить обложку, на сайте будет использована первая фотография.')
-                ->columnSpanFull();
-        }
-
-        return Tab::make($label)->schema($fields);
+                ->columnSpanFull(),
+            ContentBlocks::schema(
+                'photo_content',
+                allowedBlocks: ['image', 'gallery_2', 'gallery_3', 'gallery_4'],
+            ),
+        ]);
     }
 
     protected static function photoUpload(string $name, string $uploadClass): FileUpload

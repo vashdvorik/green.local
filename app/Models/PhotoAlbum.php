@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class PhotoAlbum extends Model
 {
     protected $fillable = [
-        'slug', 'status', 'published_at', 'cover_image', 'title', 'excerpt', 'content',
+        'slug', 'status', 'published_at', 'cover_image', 'title', 'excerpt', 'content', 'photo_content',
     ];
 
     protected function casts(): array
@@ -18,6 +18,7 @@ class PhotoAlbum extends Model
             'title' => 'array',
             'excerpt' => 'array',
             'content' => 'array',
+            'photo_content' => 'array',
         ];
     }
 
@@ -50,6 +51,12 @@ class PhotoAlbum extends Model
      */
     public function contentFor(string $locale): array
     {
+        $sharedContent = $this->photo_content;
+
+        if (is_array($sharedContent) && count($sharedContent)) {
+            return array_values($sharedContent);
+        }
+
         $content = data_get($this->content, $locale);
 
         if (is_array($content) && count($content)) {

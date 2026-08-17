@@ -249,6 +249,44 @@ class ContentManagementRegressionTest extends TestCase
         $this->assertStringNotContainsString('data-photo-albums-next-url', $secondPage);
     }
 
+    public function test_photo_album_content_is_shared_between_all_language_tabs(): void
+    {
+        $sharedContent = [[
+            'type' => 'gallery_2',
+            'data' => ['images' => [
+                ['path' => 'uploads/albums/shared-one.avif'],
+                ['path' => 'uploads/albums/shared-two.avif'],
+            ]],
+        ]];
+
+        $album = PhotoAlbum::create([
+            'slug' => 'shared-photo-content',
+            'status' => 'published',
+            'published_at' => now(),
+            'title' => [
+                'ru' => 'Общий фотоальбом',
+                'ro' => 'Album foto comun',
+                'en' => 'Shared photo album',
+            ],
+            'excerpt' => [
+                'ru' => 'Описание',
+                'ro' => 'Descriere',
+                'en' => 'Description',
+            ],
+            'photo_content' => $sharedContent,
+        ]);
+
+        $this->assertSame($sharedContent, $album->contentFor('ru'));
+        $this->assertSame($sharedContent, $album->contentFor('ro'));
+        $this->assertSame($sharedContent, $album->contentFor('en'));
+        $this->assertSame(2, $album->photoCount());
+
+        $this->get('/media/photos/shared-photo-content')
+            ->assertOk()
+            ->assertSee('shared-one.avif')
+            ->assertSee('shared-two.avif');
+    }
+
     public function test_filament_and_laravel_core_translations_are_russian(): void
     {
         $this->assertSame('ru', app()->getLocale());
@@ -1100,7 +1138,7 @@ class ContentManagementRegressionTest extends TestCase
                 && $field->getPanelAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
                 && $field->getItemPanelAspectRatio() === (4 / 3)
                 && $field->getImageCropAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO)
-            ->assertFormFieldExists('content.ru', function ($field): bool {
+            ->assertFormFieldExists('photo_content', function ($field): bool {
                 $galleryTwo = $field->getBlock('gallery_2')?->getChildSchema()->getComponents()[0] ?? null;
                 $galleryThree = $field->getBlock('gallery_3')?->getChildSchema()->getComponents()[0] ?? null;
                 $galleryFour = $field->getBlock('gallery_4')?->getChildSchema()->getComponents()[0] ?? null;

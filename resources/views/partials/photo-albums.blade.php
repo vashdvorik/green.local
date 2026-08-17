@@ -22,7 +22,6 @@
             @endif
         </header>
 
-        @php($contentByLocale = ['ru' => $album->contentFor('ru'), 'ro' => $album->contentFor('ro'), 'en' => $album->contentFor('en')])
         @if ($album->photoCount() === 0)
             <div class="dynamic-empty-state photo-album-feed__empty">
                 <p>
@@ -33,11 +32,7 @@
             </div>
         @else
             <div class="dynamic-article__content photo-album-feed__content">
-                @foreach ($contentByLocale as $locale => $blocks)
-                    <div class="dynamic-article__locale locale-copy locale-copy--{{ $locale }}">
-                        @include('partials.content-blocks', ['blocks' => $blocks])
-                    </div>
-                @endforeach
+                @include('partials.content-blocks', ['blocks' => $album->contentFor('ru')])
             </div>
         @endif
     </article>

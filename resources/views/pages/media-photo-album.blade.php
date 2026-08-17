@@ -44,11 +44,7 @@
             </div>
         @else
             <div class="dynamic-article__content photo-album-page__content">
-                @foreach (['ru', 'ro', 'en'] as $locale)
-                    <div class="dynamic-article__locale locale-copy locale-copy--{{ $locale }}">
-                        @include('partials.content-blocks', ['blocks' => $album->contentFor($locale)])
-                    </div>
-                @endforeach
+                @include('partials.content-blocks', ['blocks' => $album->contentFor('ru')])
             </div>
         @endif
 
