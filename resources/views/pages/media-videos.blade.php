@@ -1,42 +1,52 @@
 @extends('layouts.site')
 
 @section('content')
-<section class="page-section page-section--intro">
+<section class="page-section page-section--intro page-section--videos">
     <div class="container">
-        <div class="page-section__header">
-            <span class="section-marker">
-                <span class="locale-copy locale-copy--ru">Видеоматериалы</span>
-                <span class="locale-copy locale-copy--ro">Materiale video</span>
-                <span class="locale-copy locale-copy--en">Video materials</span>
-            </span>
-            <h1>
-                <span class="locale-copy locale-copy--ru">Смотреть, как работает практика.</span>
-                <span class="locale-copy locale-copy--ro">Vedeți practica în acțiune.</span>
-                <span class="locale-copy locale-copy--en">See practice in action.</span>
-            </h1>
-        </div>
-
-        <div class="placeholder-grid">
-            <article class="content-card content-card--media">
-                <div class="video-placeholder"><span aria-hidden="true">▶</span></div>
-                <span class="content-card__meta">YouTube · [дата]</span>
-                <h3>
-                    <span class="locale-copy locale-copy--ru">Презентация Green Energy Hub</span>
-                    <span class="locale-copy locale-copy--ro">Prezentarea Green Energy Hub</span>
-                    <span class="locale-copy locale-copy--en">Green Energy Hub presentation</span>
-                </h3>
-                <p>
-                    <span class="locale-copy locale-copy--ru">Placeholder для превью, названия и описания видеоматериала.</span>
-                    <span class="locale-copy locale-copy--ro">Placeholder pentru previzualizare, titlu și descriere video.</span>
-                    <span class="locale-copy locale-copy--en">A placeholder for a video preview, title and description.</span>
-                </p>
-                <a class="card-link" href="#">
-                    <span class="locale-copy locale-copy--ru">Открыть видео</span>
-                    <span class="locale-copy locale-copy--ro">Deschideți video</span>
-                    <span class="locale-copy locale-copy--en">Open video</span> <span aria-hidden="true">↗</span>
-                </a>
-            </article>
-        </div>
+        @forelse ($videos as $video)
+            @if ($loop->first)
+                <div class="video-grid">
+            @endif
+                    <article class="video-card" data-video-card data-video-id="{{ $video->youtube_id }}">
+                        <button class="video-card__preview" type="button" data-video-trigger aria-label="Открыть видеоматериал">
+                            <img src="{{ $video->coverUrl() }}" alt="{{ $video->titleFor('ru') }}" loading="lazy" decoding="async">
+                            <span class="video-card__play" aria-hidden="true"></span>
+                        </button>
+                        <div class="video-card__body">
+                            <span class="content-card__meta">
+                                <span class="locale-copy locale-copy--ru">{{ $video->event_date?->format('d.m.Y') }}</span>
+                                <span class="locale-copy locale-copy--ro">{{ $video->event_date?->format('d.m.Y') }}</span>
+                                <span class="locale-copy locale-copy--en">{{ $video->event_date?->format('d.m.Y') }}</span>
+                            </span>
+                            <h2 class="video-card__title">
+                                <span class="locale-copy locale-copy--ru">{{ $video->titleFor('ru') }}</span>
+                                <span class="locale-copy locale-copy--ro">{{ $video->titleFor('ro') }}</span>
+                                <span class="locale-copy locale-copy--en">{{ $video->titleFor('en') }}</span>
+                            </h2>
+                            <p>
+                                <span class="locale-copy locale-copy--ru">{{ $video->descriptionFor('ru') }}</span>
+                                <span class="locale-copy locale-copy--ro">{{ $video->descriptionFor('ro') }}</span>
+                                <span class="locale-copy locale-copy--en">{{ $video->descriptionFor('en') }}</span>
+                            </p>
+                        </div>
+                    </article>
+            @if ($loop->last)
+                </div>
+            @endif
+        @empty
+            <div class="dynamic-empty-state video-empty-state">
+                <span class="locale-copy locale-copy--ru">Видеоматериалы пока не добавлены.</span>
+                <span class="locale-copy locale-copy--ro">Materialele video nu au fost încă adăugate.</span>
+                <span class="locale-copy locale-copy--en">No video materials have been added yet.</span>
+            </div>
+        @endforelse
     </div>
 </section>
+
+<div class="video-modal" data-video-modal hidden>
+    <div class="video-modal__dialog" role="dialog" aria-modal="true" aria-label="Видеоматериал">
+        <button class="video-modal__close" type="button" data-video-modal-close aria-label="Закрыть видео">×</button>
+        <div class="video-modal__player" data-video-player></div>
+    </div>
+</div>
 @endsection

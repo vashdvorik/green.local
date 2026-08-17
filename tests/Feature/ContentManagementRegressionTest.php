@@ -13,23 +13,29 @@ use App\Filament\Resources\PhotoAlbumResource;
 use App\Filament\Resources\PhotoAlbumResource\Pages\CreatePhotoAlbum;
 use App\Filament\Resources\TagResource;
 use App\Filament\Resources\TagResource\Pages\CreateTag;
+use App\Filament\Resources\VideoResource;
+use App\Filament\Resources\VideoResource\Pages\CreateVideo;
+use App\Filament\Resources\VideoResource\Pages\EditVideo;
 use App\Models\News;
 use App\Models\Opportunity;
 use App\Models\PhotoAlbum;
 use App\Models\SiteSetting;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Video;
 use App\Providers\Filament\AdminPanelProvider;
 use App\Services\AiTranslationService;
 use App\Services\ImageProcessor;
 use App\Support\ContentLimits;
 use App\Support\FilamentImageUpload;
+use App\Support\YouTube;
 use Filament\Actions\Testing\TestAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select as FormSelect;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\Schemas\Components\Grid;
@@ -190,11 +196,12 @@ class ContentManagementRegressionTest extends TestCase
             ->assertSee('Энергетическая практика')
             ->assertDontSee('Черновой альбом')
             ->assertDontSee('Будущий альбом')
-            ->assertSee('href="'.route('media.photos.show', $album).'"', false);
+            ->assertSee('photo-album-feed__album', false)
+            ->assertSee('dynamic-article__gallery--2', false);
 
         $response = $this->get('/media/photos/'.$album->slug)
             ->assertOk()
-            ->assertSee('photo-album-gallery', false)
+            ->assertSee('dynamic-article__gallery', false)
             ->assertDontSee('media-switcher', false)
             ->assertSee('data-image-lightbox', false)
             ->assertSee('Энергетическая практика');
@@ -206,6 +213,40 @@ class ContentManagementRegressionTest extends TestCase
         $this->get('/media/photos/hidden-album')->assertNotFound();
         $this->get('/media/photos/future-album')->assertNotFound();
         $this->assertSame('Энергетическая практика', $album->titleFor('ro'));
+    }
+
+    public function test_photo_album_feed_renders_builder_blocks_and_loads_more_albums_by_page(): void
+    {
+        foreach (range(1, 7) as $index) {
+            PhotoAlbum::create([
+                'slug' => "builder-album-{$index}",
+                'status' => 'published',
+                'published_at' => now()->subMinutes($index),
+                'title' => ['ru' => "Альбом {$index}"],
+                'excerpt' => ['ru' => 'Описание альбома.'],
+                'content' => ['ru' => [[
+                    'type' => 'gallery_3',
+                    'data' => ['images' => [
+                        ['path' => 'uploads/albums/one.avif'],
+                        ['path' => 'uploads/albums/two.avif'],
+                        ['path' => 'uploads/albums/three.avif'],
+                    ]],
+                ]]],
+            ]);
+        }
+
+        $firstPage = $this->get('/media/photos')->assertOk()->getContent();
+
+        $this->assertSame(6, substr_count($firstPage, 'photo-album-feed__album'));
+        $this->assertSame(5, substr_count($firstPage, 'photo-album-feed__divider'));
+        $this->assertStringContainsString('dynamic-article__gallery--3', $firstPage);
+        $this->assertStringContainsString('data-photo-albums-load-more', $firstPage);
+
+        $secondPage = $this->get('/media/photos?page=2&fragment=1')->assertOk()->getContent();
+
+        $this->assertSame(1, substr_count($secondPage, 'photo-album-feed__album'));
+        $this->assertSame(1, substr_count($secondPage, 'photo-album-feed__divider'));
+        $this->assertStringNotContainsString('data-photo-albums-next-url', $secondPage);
     }
 
     public function test_filament_and_laravel_core_translations_are_russian(): void
@@ -878,7 +919,8 @@ class ContentManagementRegressionTest extends TestCase
             ->get('/admin/photo-albums/create')
             ->assertOk()
             ->assertSee('Новый фотоальбом')
-            ->assertSee('Фотографии');
+            ->assertSee('Название альбома')
+            ->assertSee('Обложка альбома');
 
         $newsCreateResponse = $this->actingAs($admin)
             ->get('/admin/news/create');
@@ -1051,11 +1093,50 @@ class ContentManagementRegressionTest extends TestCase
             ->assertFormFieldExists('title.ru')
             ->assertFormFieldExists('title.ro')
             ->assertFormFieldExists('title.en')
+            ->assertFormFieldExists('status', function (FormSelect $field): bool {
+                return $field->getDefaultState() === 'published';
+            })
             ->assertFormFieldExists('cover_image', fn (FileUpload $field): bool => $field->getImagePreviewHeight() === '120'
                 && $field->getPanelAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
                 && $field->getItemPanelAspectRatio() === (4 / 3)
                 && $field->getImageCropAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO)
-            ->assertFormFieldExists('photos', fn (Repeater $field): bool => $field->isReorderable());
+            ->assertFormFieldExists('content.ru', function ($field): bool {
+                $galleryTwo = $field->getBlock('gallery_2')?->getChildSchema()->getComponents()[0] ?? null;
+                $galleryThree = $field->getBlock('gallery_3')?->getChildSchema()->getComponents()[0] ?? null;
+                $galleryFour = $field->getBlock('gallery_4')?->getChildSchema()->getComponents()[0] ?? null;
+                $galleryTwoUpload = $galleryTwo instanceof Repeater
+                    ? $galleryTwo->getChildSchema()->getComponents()[0] ?? null
+                    : null;
+                $galleryThreeUpload = $galleryThree instanceof Repeater
+                    ? $galleryThree->getChildSchema()->getComponents()[0] ?? null
+                    : null;
+                $galleryFourUpload = $galleryFour instanceof Repeater
+                    ? $galleryFour->getChildSchema()->getComponents()[0] ?? null
+                    : null;
+
+                return $field->getBlock('image') !== null
+                    && $field->getBlock('gallery_2') !== null
+                    && $field->getBlock('gallery_3') !== null
+                    && $field->getBlock('gallery_4') !== null
+                    && $field->getBlock('paragraph') === null
+                    && $galleryTwoUpload instanceof FileUpload
+                    && ! $galleryTwoUpload->shouldFetchFileInformation()
+                    && $galleryTwoUpload->getPanelLayout() === 'integrated'
+                    && $galleryTwoUpload->getPanelAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
+                    && $galleryTwoUpload->getImageCropAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
+                    && $galleryThreeUpload instanceof FileUpload
+                    && ! $galleryThreeUpload->shouldFetchFileInformation()
+                    && $galleryThreeUpload->getPanelLayout() === 'integrated'
+                    && $galleryThreeUpload->getPanelAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
+                    && $galleryThreeUpload->getImageCropAspectRatio() === FilamentImageUpload::LANDSCAPE_RATIO
+                    && $galleryFourUpload instanceof FileUpload
+                    && ! $galleryFourUpload->shouldFetchFileInformation()
+                    && $galleryFourUpload->getPanelLayout() === 'integrated'
+                    && $galleryFourUpload->getPanelAspectRatio() === FilamentImageUpload::PORTRAIT_RATIO
+                    && $galleryFourUpload->getImageCropAspectRatio() === FilamentImageUpload::PORTRAIT_RATIO;
+            });
+
+        $this->assertSame('published', PhotoAlbumResource::mutateFormData([])['status']);
 
         Livewire::test(CreateTag::class)
             ->assertFormFieldExists('name.ru', fn ($field): bool => $field->isRequired())
@@ -1513,6 +1594,109 @@ class ContentManagementRegressionTest extends TestCase
         $this->assertNotEmpty($romanianTab[0] ?? null);
         $this->assertStringContainsString("\u{2713}", $romanianTab[0]);
         $this->assertStringNotContainsString("\u{26A0}", $romanianTab[0]);
+    }
+
+    public function test_video_urls_accept_only_supported_youtube_hosts(): void
+    {
+        $this->assertSame('x0AIDgyz6Qg', YouTube::extractVideoId('https://youtu.be/x0AIDgyz6Qg'));
+        $this->assertSame('VP8GqtLYr38', YouTube::extractVideoId('https://www.youtube.com/watch?v=VP8GqtLYr38'));
+        $this->assertSame('mgS3xvbKI3g', YouTube::extractVideoId('https://youtube.com/shorts/mgS3xvbKI3g'));
+        $this->assertNull(YouTube::extractVideoId('https://vimeo.com/123456789'));
+        $this->assertNull(YouTube::extractVideoId('https://youtube.com/watch?v=invalid'));
+    }
+
+    public function test_videos_keep_manual_order_and_show_their_event_date(): void
+    {
+        Video::create([
+            'title' => ['ru' => 'Второе видео'],
+            'description' => ['ru' => 'Описание второго видео'],
+            'youtube_url' => 'https://youtu.be/VP8GqtLYr38',
+            'youtube_id' => 'VP8GqtLYr38',
+            'event_date' => '2026-08-05',
+            'position' => 2,
+        ]);
+        Video::create([
+            'title' => ['ru' => 'Первое видео'],
+            'description' => ['ru' => 'Описание первого видео'],
+            'youtube_url' => 'https://youtu.be/x0AIDgyz6Qg',
+            'youtube_id' => 'x0AIDgyz6Qg',
+            'event_date' => '2026-08-01',
+            'position' => 1,
+        ]);
+
+        $content = $this->get('/media/videos')->assertOk()->getContent();
+
+        $this->assertLessThan(
+            strpos($content, 'data-video-id="VP8GqtLYr38"'),
+            strpos($content, 'data-video-id="x0AIDgyz6Qg"'),
+        );
+        $this->assertStringContainsString('01.08.2026', $content);
+        $this->assertStringContainsString('https://i.ytimg.com/vi/x0AIDgyz6Qg/hqdefault.jpg', $content);
+        $this->assertStringNotContainsString('youtube.com', explode('<footer', $content, 2)[0]);
+        $this->assertStringNotContainsString('youtu.be', explode('<footer', $content, 2)[0]);
+    }
+
+    public function test_video_resource_exposes_multilingual_fields_and_optional_fixed_cover(): void
+    {
+        Config::set('admin.email', 'admin@example.test');
+        $admin = User::factory()->create(['email' => 'admin@example.test']);
+
+        $this->actingAs($admin);
+
+        Livewire::test(CreateVideo::class)
+            ->assertFormFieldExists('title.ru')
+            ->assertFormFieldExists('title.ro')
+            ->assertFormFieldExists('title.en')
+            ->assertFormFieldExists('description.ru')
+            ->assertFormFieldExists('youtube_url', function (TextInput $field): bool {
+                $rules = $field->getValidationRules();
+
+                return $field->isRequired()
+                    && $field->getMaxLength() === 2048
+                    && count($rules) > 0;
+            })
+            ->assertFormFieldExists('event_date')
+            ->assertFormFieldExists('cover_image', function (FileUpload $field): bool {
+                return $field->getPanelLayout() === 'integrated'
+                    && $field->getPanelAspectRatio() === FilamentImageUpload::ARTICLE_RATIO
+                    && $field->getItemPanelAspectRatio() === (16 / 9)
+                    && $field->getImageCropAspectRatio() === FilamentImageUpload::ARTICLE_RATIO;
+            });
+
+        $this->assertNavigationItems(
+            VideoResource::getNavigationItems(),
+            ['videos.index', 'videos.create'],
+            'Медиа',
+        );
+    }
+
+    public function test_existing_video_can_save_a_new_cover_without_filament_validation_resolution_errors(): void
+    {
+        if (! function_exists('imageavif')) {
+            $this->fail('The GD extension with AVIF support is required for image processing.');
+        }
+
+        Config::set('admin.email', 'admin@example.test');
+        $admin = User::factory()->create(['email' => 'admin@example.test']);
+        Storage::fake('public');
+        $video = Video::create([
+            'title' => ['ru' => 'Видео для проверки обложки'],
+            'description' => ['ru' => 'Описание видео'],
+            'youtube_url' => 'https://youtu.be/x0AIDgyz6Qg',
+            'youtube_id' => 'x0AIDgyz6Qg',
+            'event_date' => '2026-08-01',
+        ]);
+
+        Livewire::actingAs($admin)
+            ->test(EditVideo::class, ['record' => $video->id])
+            ->upload('data.cover_image', [UploadedFile::fake()->image('video-cover.jpg', 1600, 900)])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $video->refresh();
+
+        $this->assertNotEmpty($video->cover_image);
+        Storage::disk('public')->assertExists($video->cover_image);
     }
 
     /**

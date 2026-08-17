@@ -5,12 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PhotoAlbumResource\Pages;
 use App\Models\PhotoAlbum;
 use App\Services\ImageProcessor;
+use App\Support\ContentBlocks;
 use App\Support\FilamentImageUpload;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -76,7 +76,7 @@ class PhotoAlbumResource extends Resource
                         Select::make('status')
                             ->label('Видимость')
                             ->options(['draft' => 'Черновик', 'published' => 'Опубликовано'])
-                            ->default('draft')
+                            ->default('published')
                             ->required(),
                         DateTimePicker::make('published_at')
                             ->label('Дата публикации')
@@ -84,19 +84,6 @@ class PhotoAlbumResource extends Resource
                             ->displayFormat('d.m.Y H:i')
                             ->maxDate(now()),
                     ]),
-                ])
-                ->columnSpanFull(),
-            Repeater::make('photos')
-                ->label('Фотографии')
-                ->relationship()
-                ->orderColumn('position')
-                ->reorderableWithDragAndDrop()
-                ->addActionLabel('Добавить фото')
-                ->defaultItems(0)
-                ->grid(['default' => 2, 'lg' => 3])
-                ->extraAttributes(['class' => 'album-photo-manager'])
-                ->schema([
-                    static::photoUpload('path', 'album-photo-upload')->hiddenLabel(),
                 ])
                 ->columnSpanFull(),
         ]);
@@ -114,7 +101,9 @@ class PhotoAlbumResource extends Resource
                     ->label('Название')
                     ->getStateUsing(fn (PhotoAlbum $record): string => $record->titleFor('ru'))
                     ->searchable(query: fn ($query, string $search) => $query->where('title->ru', 'like', "%{$search}%")),
-                TextColumn::make('photos_count')->counts('photos')->label('Фото'),
+                TextColumn::make('photos_count')
+                    ->label('Фото')
+                    ->getStateUsing(fn (PhotoAlbum $record): int => $record->photoCount()),
                 TextColumn::make('status')->label('Статус')->badge()
                     ->formatStateUsing(fn (string $state): string => $state === 'published' ? 'Опубликовано' : 'Черновик')
                     ->color(fn (string $state): string => $state === 'published' ? 'success' : 'gray'),
@@ -134,7 +123,7 @@ class PhotoAlbumResource extends Resource
         $data['slug'] = blank($slug)
             ? (filled(data_get($data, 'title.ru')) ? Str::slug((string) data_get($data, 'title.ru')) : 'album-'.Str::lower(Str::random(12)))
             : Str::slug($slug);
-        $data['status'] ??= 'draft';
+        $data['status'] ??= 'published';
         $data['published_at'] = $data['status'] === 'published'
             ? ($data['published_at'] ?? now())
             : null;
@@ -155,6 +144,10 @@ class PhotoAlbumResource extends Resource
                 ->rows(3)
                 ->maxLength(240)
                 ->columnSpanFull(),
+            ContentBlocks::schema(
+                "content.{$locale}",
+                allowedBlocks: ['image', 'gallery_2', 'gallery_3', 'gallery_4'],
+            ),
         ];
 
         if ($isRussian) {

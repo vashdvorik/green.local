@@ -3,19 +3,6 @@
 @section('content')
 <section class="page-section page-section--intro">
     <div class="container">
-        <div class="page-section__header">
-            <span class="section-marker">
-                <span class="locale-copy locale-copy--ru">Публикации проекта</span>
-                <span class="locale-copy locale-copy--ro">Publicațiile proiectului</span>
-                <span class="locale-copy locale-copy--en">Project publications</span>
-            </span>
-            <h1>
-                <span class="locale-copy locale-copy--ru">Материалы для работы.</span>
-                <span class="locale-copy locale-copy--ro">Materiale pentru lucru.</span>
-                <span class="locale-copy locale-copy--en">Materials for practical work.</span>
-            </h1>
-        </div>
-
         <div class="media-grid">
             <article class="media-card media-card--document">
                 <span class="document-icon">PDF</span>

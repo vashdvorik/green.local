@@ -134,24 +134,61 @@
     </div>
 </section>
 
+@if ($homeNews->count() >= 3)
 <section class="section section--feed home-energy-section">
     <div class="container">
         <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.news.label">Последние новости</span></div><h2 data-i18n="home.news.title">Что происходит в хабе.</h2></div><a class="text-link" href="{{ route('news') }}" data-i18n="home.news.cta">Все новости <span aria-hidden="true">→</span></a></div>
         <div class="news-grid">
-            <a class="news-card" href="{{ route('news') }}"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'energy-hero', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news1">Заголовок новости проекта</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><span class="card-link" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></span></a>
-            <a class="news-card" href="{{ route('news') }}"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'infrastructure-beta', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news2">Новая публикация Green Energy Hub</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><span class="card-link" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></span></a>
-            <a class="news-card" href="{{ route('news') }}"><div class="news-card__image">@include('partials.responsive-image', ['name' => 'project-beta', 'alt' => '', 'loading' => 'lazy'])<span class="placeholder-tag" data-i18n="placeholder.image">Фото-заполнитель</span></div><div class="news-card__meta"><span data-i18n="placeholder.date">Дата</span></div><h3 data-i18n="placeholder.news3">Практика, обучение и партнёрство</h3><p data-i18n="placeholder.excerpt">Краткий анонс публикации появится здесь.</p><span class="card-link" data-i18n="home.read">Подробнее <span aria-hidden="true">→</span></span></a>
+            @foreach ($homeNews as $item)
+                <a class="news-card" href="{{ route('news.show', $item) }}">
+                    <div class="news-card__image">@include('partials.dynamic-image', ['path' => $item->cover_image, 'seed' => $item->id, 'alt' => $item->titleFor('ru'), 'loading' => 'lazy'])</div>
+                    <div class="news-card__meta"><time datetime="{{ $item->published_at?->toDateString() }}">{{ $item->published_at?->format('d.m.Y') }}</time></div>
+                    <h3><span class="locale-copy locale-copy--ru">{{ $item->titleFor('ru') }}</span><span class="locale-copy locale-copy--ro">{{ $item->titleFor('ro') }}</span><span class="locale-copy locale-copy--en">{{ $item->titleFor('en') }}</span></h3>
+                    <p><span class="locale-copy locale-copy--ru">{{ \Illuminate\Support\Str::limit($item->excerptFor('ru'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span><span class="locale-copy locale-copy--ro">{{ \Illuminate\Support\Str::limit($item->excerptFor('ro'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span><span class="locale-copy locale-copy--en">{{ \Illuminate\Support\Str::limit($item->excerptFor('en'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span></p>
+                    <span class="card-link"><span class="locale-copy locale-copy--ru">Подробнее</span><span class="locale-copy locale-copy--ro">Detalii</span><span class="locale-copy locale-copy--en">Read more</span> <span aria-hidden="true">→</span></span>
+                </a>
+            @endforeach
         </div>
     </div>
 </section>
+@endif
 
+@if ($homeOpportunities->count() >= 3)
 <section class="section section--opportunities home-energy-section">
     <div class="container">
         <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.opps.label">Актуальные возможности</span></div><h2 data-i18n="home.opps.title">Возможности, которыми можно воспользоваться сейчас.</h2></div><a class="text-link" href="{{ route('stories') }}" data-i18n="home.opps.cta">Все возможности <span aria-hidden="true">→</span></a></div>
         <div class="opportunity-grid">
-            <a class="opportunity-card" href="{{ route('stories') }}"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'project-beta', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge" data-i18n="placeholder.opportunity.type">ОБУЧЕНИЕ</span><h3 data-i18n="placeholder.opportunity1">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><span class="button button--small" data-i18n="home.details">Подробнее</span></div></a>
-            <a class="opportunity-card" href="{{ route('stories') }}"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'infrastructure-beta', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge badge--dark" data-i18n="placeholder.opportunity.type2">КОНКУРС</span><h3 data-i18n="placeholder.opportunity2">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><span class="button button--small" data-i18n="home.details">Подробнее</span></div></a>
-            <a class="opportunity-card" href="{{ route('stories') }}"><div class="opportunity-card__image">@include('partials.responsive-image', ['name' => 'energy-hero', 'alt' => '', 'loading' => 'lazy'])</div><span class="badge badge--soft" data-i18n="placeholder.opportunity.type3">ОБМЕН ОПЫТОМ</span><h3 data-i18n="placeholder.opportunity3">Название возможности</h3><p data-i18n="placeholder.opportunity.copy">Краткое описание предложения или программы.</p><div class="opportunity-card__footer"><span data-i18n="placeholder.deadline">Подать заявку до [дата]</span><span class="button button--small" data-i18n="home.details">Подробнее</span></div></a>
+            @foreach ($homeOpportunities as $item)
+                @php($isClosed = $item->application_deadline?->isBefore(today()) ?? false)
+                <a class="opportunity-card{{ $isClosed ? ' opportunity-card--closed' : '' }}" href="{{ route('stories.show', $item) }}">
+                    <div class="opportunity-card__image">@include('partials.dynamic-image', ['path' => $item->cover_image, 'seed' => $item->id, 'alt' => $item->titleFor('ru'), 'loading' => 'lazy'])</div>
+                    @if ($item->tag)
+                        <span class="badge" style="--tag-color: {{ $item->tag->colorValue() }}; background: var(--tag-color); color: var(--ink);">{{ $item->tag->labelFor('ru') }}</span>
+                    @endif
+                    <h3><span class="locale-copy locale-copy--ru">{{ $item->titleFor('ru') }}</span><span class="locale-copy locale-copy--ro">{{ $item->titleFor('ro') }}</span><span class="locale-copy locale-copy--en">{{ $item->titleFor('en') }}</span></h3>
+                    <p><span class="locale-copy locale-copy--ru">{{ \Illuminate\Support\Str::limit($item->excerptFor('ru'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span><span class="locale-copy locale-copy--ro">{{ \Illuminate\Support\Str::limit($item->excerptFor('ro'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span><span class="locale-copy locale-copy--en">{{ \Illuminate\Support\Str::limit($item->excerptFor('en'), \App\Support\ContentLimits::CARD_DESCRIPTION_MAX) }}</span></p>
+                    <div class="opportunity-card__footer"><span>@if ($isClosed)<span class="locale-copy locale-copy--ru">Приём завершён</span><span class="locale-copy locale-copy--ro">Înscrierile s-au încheiat</span><span class="locale-copy locale-copy--en">Applications closed</span>@elseif ($item->application_deadline)<span class="locale-copy locale-copy--ru">Подать заявку до {{ $item->application_deadline->format('d.m.Y') }}</span><span class="locale-copy locale-copy--ro">Depuneți cererea până la {{ $item->application_deadline->format('d.m.Y') }}</span><span class="locale-copy locale-copy--en">Apply by {{ $item->application_deadline->format('d.m.Y') }}</span>@endif</span><span class="button button--small"><span class="locale-copy locale-copy--ru">Подробнее</span><span class="locale-copy locale-copy--ro">Detalii</span><span class="locale-copy locale-copy--en">Details</span></span></div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+<section class="section section--experts home-energy-section">
+    <div class="container">
+        <div class="section-head section-head--feed">
+            <div>
+                <div class="section-marker"><span data-i18n="home.experts.label">Команда проекта</span></div>
+                <h2 data-i18n="home.experts.title">Наши эксперты.</h2>
+            </div>
+            <div class="section-head__aside">
+                <p class="section-head__copy" data-i18n="home.experts.copy">Специалисты Green Energy Hub помогают превращать измерения, знания и опыт в практические решения.</p>
+            </div>
+        </div>
+        @include('partials.experts-grid', ['showSummary' => true])
+        <div class="section--experts__action">
+            <a class="button button--outline" href="{{ route('about.experts') }}" data-i18n="home.experts.cta">Подробнее <span aria-hidden="true">→</span></a>
         </div>
     </div>
 </section>

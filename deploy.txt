@@ -34,3 +34,31 @@ php artisan key:generate запускайте только при первой �
 Проверьте:
 https://example.com/admin
 Администратор создаётся из ADMIN_EMAIL и ADMIN_PASSWORD при выполнении migrate --seed.
+
+Смена email или пароля администратора после деплоя
+--------------------------------------------------
+
+1. Измените в .env только нужные значения:
+
+ADMIN_NAME="Energy Hub Administrator"
+ADMIN_EMAIL=новый_email@example.com
+ADMIN_PASSWORD="новый_пароль_не_менее_12_символов"
+
+2. Очистите кеш конфигурации, чтобы Laravel прочитал новые значения .env:
+
+/usr/local/bin/ea-php84 artisan optimize:clear
+
+3. Обновите только данные администратора:
+
+/usr/local/bin/ea-php84 artisan db:seed --class=AdminUserSeeder --force
+
+4. Пересоберите кеш приложения:
+
+/usr/local/bin/ea-php84 artisan optimize
+
+Если изменён только ADMIN_PASSWORD, пароль существующего администратора будет обновлён.
+Если изменён ADMIN_EMAIL, будет создан новый администратор с новым адресом. Старый пользователь
+останется в базе, но не сможет войти в Filament, поскольку доступ разрешён адресу из .env.
+
+Для обычного обновления проекта используйте migrate --force без --seed. Команда migrate --seed
+запускает все сидеры и может добавить демонстрационные материалы.

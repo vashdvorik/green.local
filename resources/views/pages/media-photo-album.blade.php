@@ -19,9 +19,9 @@
             <div class="photo-album-page__meta">
                 <time datetime="{{ $album->published_at?->toDateString() }}">{{ $album->published_at?->format('d.m.Y') }}</time>
                 <span>
-                    <span class="locale-copy locale-copy--ru">{{ $album->photos->count() }} фото</span>
-                    <span class="locale-copy locale-copy--ro">{{ $album->photos->count() }} fotografii</span>
-                    <span class="locale-copy locale-copy--en">{{ $album->photos->count() }} photos</span>
+                    <span class="locale-copy locale-copy--ru">{{ $album->photoCount() }} фото</span>
+                    <span class="locale-copy locale-copy--ro">{{ $album->photoCount() }} fotografii</span>
+                    <span class="locale-copy locale-copy--en">{{ $album->photoCount() }} photos</span>
                 </span>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
         @endif
 
-        @if ($album->photos->isEmpty())
+        @if ($album->photoCount() === 0)
             <div class="dynamic-empty-state">
                 <p>
                     <span class="locale-copy locale-copy--ru">Фотографии появятся в этом альбоме позже.</span>
@@ -43,13 +43,11 @@
                 </p>
             </div>
         @else
-            <div class="photo-album-gallery">
-                @foreach ($album->photos as $photo)
-                    <figure>
-                        <div class="photo-album-gallery__media">
-                            @include('partials.dynamic-image', ['path' => $photo->path, 'seed' => $photo->id, 'alt' => ''])
-                        </div>
-                    </figure>
+            <div class="dynamic-article__content photo-album-page__content">
+                @foreach (['ru', 'ro', 'en'] as $locale)
+                    <div class="dynamic-article__locale locale-copy locale-copy--{{ $locale }}">
+                        @include('partials.content-blocks', ['blocks' => $album->contentFor($locale)])
+                    </div>
                 @endforeach
             </div>
         @endif

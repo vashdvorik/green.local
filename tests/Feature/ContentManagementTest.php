@@ -165,6 +165,60 @@ class ContentManagementTest extends TestCase
             ->assertDontSee($longDescription);
     }
 
+    public function test_home_shows_three_latest_real_items_and_hides_incomplete_sections(): void
+    {
+        foreach (range(1, 2) as $index) {
+            News::create([
+                'slug' => "home-news-{$index}",
+                'status' => 'published',
+                'published_at' => now()->subDays($index),
+                'title' => ['ru' => "Домашняя новость {$index}"],
+                'excerpt' => ['ru' => 'Краткий анонс новости.'],
+                'content' => ['ru' => []],
+            ]);
+
+            Opportunity::create([
+                'slug' => "home-opportunity-{$index}",
+                'status' => 'published',
+                'published_at' => now()->subDays($index),
+                'title' => ['ru' => "Домашняя возможность {$index}"],
+                'excerpt' => ['ru' => 'Краткий анонс возможности.'],
+                'content' => ['ru' => []],
+            ]);
+        }
+
+        $this->get('/')
+            ->assertDontSee('section--feed', false)
+            ->assertDontSee('section--opportunities', false);
+
+        News::create([
+            'slug' => 'home-news-3',
+            'status' => 'published',
+            'published_at' => now(),
+            'title' => ['ru' => 'Домашняя новость 3'],
+            'excerpt' => ['ru' => 'Краткий анонс новости.'],
+            'content' => ['ru' => []],
+        ]);
+        Opportunity::create([
+            'slug' => 'home-opportunity-3',
+            'status' => 'published',
+            'published_at' => now(),
+            'title' => ['ru' => 'Домашняя возможность 3'],
+            'excerpt' => ['ru' => 'Краткий анонс возможности.'],
+            'content' => ['ru' => []],
+        ]);
+
+        $home = $this->get('/')->assertOk();
+        $content = $home->getContent();
+
+        $this->assertSame(3, substr_count($content, 'class="news-card"'));
+        $this->assertSame(3, substr_count($content, 'class="opportunity-card"'));
+        $home->assertSee('Домашняя новость 3')
+            ->assertSee('Домашняя возможность 3')
+            ->assertSee('href="'.route('news.show', News::where('slug', 'home-news-3')->first()).'"', false)
+            ->assertSee('href="'.route('stories.show', Opportunity::where('slug', 'home-opportunity-3')->first()).'"', false);
+    }
+
     public function test_demo_news_seeder_creates_three_multilingual_published_news_items_idempotently(): void
     {
         $this->seed(DemoNewsSeeder::class);

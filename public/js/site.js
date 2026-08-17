@@ -11,6 +11,7 @@
             "nav.about.audits": "Энергоаудиты",
             "nav.about.results": "Результаты проекта",
             "nav.about.reports": "Отчёты",
+            "nav.about.experts": "Наши эксперты",
             "nav.business": "Для бизнеса",
             "nav.news": "Новости",
             "nav.opportunities": "Возможности",
@@ -101,6 +102,10 @@
             "home.partners.title": "Экспертиза объединяет.",
             "home.partners.copy": "Green Energy Hub сотрудничает с организациями, которые помогают развивать экспертизу, обучение и практические решения в сфере энергоэффективности.",
             "home.partners.cta": "Все партнёры",
+            "home.experts.label": "Команда проекта",
+            "home.experts.title": "Наши эксперты.",
+            "home.experts.copy": "Специалисты Green Energy Hub помогают превращать измерения, знания и опыт в практические решения.",
+            "home.experts.cta": "Подробнее",
             "home.contact.label": "Контакты",
             "home.contact.title": "Готовы разобраться с энергией?",
             "home.contact.copy": "Адрес, телефон и e-mail будут добавлены после подтверждения данных проекта.",
@@ -139,6 +144,7 @@
             "nav.about.audits": "Audituri energetice",
             "nav.about.results": "Rezultatele proiectului",
             "nav.about.reports": "Rapoarte",
+            "nav.about.experts": "Experții noștri",
             "nav.business": "Pentru afaceri",
             "nav.news": "Noutăți",
             "nav.opportunities": "Oportunități",
@@ -229,6 +235,10 @@
             "home.partners.title": "Expertiza ne unește.",
             "home.partners.copy": "Green Energy Hub colaborează cu organizații care contribuie la dezvoltarea expertizei, instruirii și soluțiilor practice în eficiență energetică.",
             "home.partners.cta": "Toți partenerii",
+            "home.experts.label": "Echipa proiectului",
+            "home.experts.title": "Experții noștri.",
+            "home.experts.copy": "Specialiștii Green Energy Hub transformă măsurătorile, cunoștințele și experiența în soluții practice.",
+            "home.experts.cta": "Mai multe",
             "home.contact.label": "Contacte",
             "home.contact.title": "Sunteți gata să înțelegeți energia?",
             "home.contact.copy": "Adresa, telefonul și e-mailul vor fi adăugate după confirmarea datelor proiectului.",
@@ -267,6 +277,7 @@
             "nav.about.audits": "Energy assessments",
             "nav.about.results": "Project results",
             "nav.about.reports": "Reports",
+            "nav.about.experts": "Our experts",
             "nav.business": "For business",
             "nav.news": "News",
             "nav.opportunities": "Opportunities",
@@ -357,6 +368,10 @@
             "home.partners.title": "Expertise brings us together.",
             "home.partners.copy": "Green Energy Hub works with organisations that help develop expertise, training and practical solutions in energy efficiency.",
             "home.partners.cta": "All partners",
+            "home.experts.label": "Project team",
+            "home.experts.title": "Our experts.",
+            "home.experts.copy": "Green Energy Hub specialists turn measurements, knowledge and experience into practical solutions.",
+            "home.experts.cta": "Learn more",
             "home.contact.label": "Contact",
             "home.contact.title": "Ready to understand your energy?",
             "home.contact.copy": "Address, phone and email will be added after the project details are confirmed.",
@@ -523,18 +538,30 @@
                 closeButton.focus();
             };
 
-            const imageTargets = lightboxRoot.querySelectorAll(".dynamic-article__figure-media, .dynamic-article__gallery-media, .photo-album-gallery__media");
-            imageTargets.forEach((target) => {
+            const imageTargetSelector = ".dynamic-article__figure-media, .dynamic-article__gallery-media, .photo-album-gallery__media";
+            const prepareImageTarget = (target) => {
                 target.tabIndex = 0;
                 target.setAttribute("role", "button");
                 target.setAttribute("aria-label", copy.open);
-                target.addEventListener("click", () => openLightbox(target));
-                target.addEventListener("keydown", (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        openLightbox(target);
-                    }
-                });
+            };
+
+            lightboxRoot.querySelectorAll(imageTargetSelector).forEach(prepareImageTarget);
+            lightboxRoot.addEventListener("click", (event) => {
+                if (!(event.target instanceof Element)) return;
+                const target = event.target.closest(imageTargetSelector);
+                if (!target || !lightboxRoot.contains(target)) return;
+                prepareImageTarget(target);
+                openLightbox(target);
+            });
+            lightboxRoot.addEventListener("keydown", (event) => {
+                if (!(event.target instanceof Element)) return;
+                const target = event.target.closest(imageTargetSelector);
+                if (!target || !lightboxRoot.contains(target)) return;
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    prepareImageTarget(target);
+                    openLightbox(target);
+                }
             });
 
             closeButton.addEventListener("click", closeLightbox);
@@ -543,6 +570,104 @@
             });
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape") closeLightbox();
+            });
+        }
+
+        const photoAlbumsLoadMore = document.querySelector("[data-photo-albums-load-more]");
+        const photoAlbumsList = document.querySelector("[data-photo-album-list]");
+        if (photoAlbumsLoadMore && photoAlbumsList) {
+            photoAlbumsLoadMore.addEventListener("click", async () => {
+                const nextUrl = photoAlbumsLoadMore.dataset.nextUrl;
+                if (!nextUrl || photoAlbumsLoadMore.disabled) return;
+
+                photoAlbumsLoadMore.disabled = true;
+                photoAlbumsLoadMore.setAttribute("aria-busy", "true");
+
+                try {
+                    const response = await fetch(nextUrl, {
+                        headers: { "X-Requested-With": "XMLHttpRequest" },
+                    });
+                    if (!response.ok) throw new Error(`Photo albums request failed: ${response.status}`);
+
+                    const html = await response.text();
+                    const parsed = new DOMParser().parseFromString(html, "text/html");
+                    const nextMarker = parsed.querySelector("template[data-photo-albums-next-url]");
+                    const upcomingUrl = nextMarker?.dataset.photoAlbumsNextUrl || "";
+                    nextMarker?.remove();
+                    photoAlbumsList.insertAdjacentHTML("beforeend", parsed.body.innerHTML);
+
+                    if (upcomingUrl) {
+                        photoAlbumsLoadMore.dataset.nextUrl = upcomingUrl;
+                        photoAlbumsLoadMore.disabled = false;
+                        photoAlbumsLoadMore.removeAttribute("aria-busy");
+                    } else {
+                        photoAlbumsLoadMore.remove();
+                    }
+                } catch (error) {
+                    photoAlbumsLoadMore.disabled = false;
+                    photoAlbumsLoadMore.removeAttribute("aria-busy");
+                    console.error(error);
+                }
+            });
+        }
+
+        const videoModal = document.querySelector("[data-video-modal]");
+        if (videoModal) {
+            const videoPlayer = videoModal.querySelector("[data-video-player]");
+            const closeButton = videoModal.querySelector("[data-video-modal-close]");
+            const videoCopy = {
+                ru: { close: "Закрыть видео", frame: "Видеоматериал" },
+                ro: { close: "Închideți video", frame: "Material video" },
+                en: { close: "Close video", frame: "Video material" },
+            };
+            let lastVideoTrigger = null;
+
+            const getLocale = () => document.documentElement.dataset.locale || "ru";
+            const getVisibleText = (root) => [...root.querySelectorAll(".locale-copy")]
+                .find((node) => window.getComputedStyle(node).display !== "none")?.textContent.trim() || "";
+            const updateVideoLabels = () => {
+                const copy = videoCopy[getLocale()] || videoCopy.ru;
+                closeButton?.setAttribute("aria-label", copy.close);
+                videoModal.querySelector('[role="dialog"]')?.setAttribute("aria-label", copy.frame);
+            };
+
+            const closeVideo = () => {
+                if (videoModal.hidden) return;
+                videoModal.hidden = true;
+                videoPlayer?.replaceChildren();
+                document.body.classList.remove("video-modal-open");
+                lastVideoTrigger?.focus();
+            };
+
+            const openVideo = (trigger) => {
+                const card = trigger.closest("[data-video-card]");
+                const videoId = card?.dataset.videoId || "";
+                if (!/^[A-Za-z0-9_-]{11}$/.test(videoId) || !videoPlayer) return;
+
+                const iframe = document.createElement("iframe");
+                iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+                iframe.title = getVisibleText(card.querySelector(".video-card__title")) || "Video material";
+                iframe.loading = "lazy";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                iframe.allowFullscreen = true;
+
+                lastVideoTrigger = trigger;
+                videoPlayer.replaceChildren(iframe);
+                updateVideoLabels();
+                videoModal.hidden = false;
+                document.body.classList.add("video-modal-open");
+                closeButton?.focus();
+            };
+
+            document.querySelectorAll("[data-video-trigger]").forEach((trigger) => {
+                trigger.addEventListener("click", () => openVideo(trigger));
+            });
+            closeButton?.addEventListener("click", closeVideo);
+            videoModal.addEventListener("click", (event) => {
+                if (event.target === videoModal) closeVideo();
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") closeVideo();
             });
         }
 

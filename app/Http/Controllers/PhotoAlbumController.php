@@ -9,17 +9,26 @@ class PhotoAlbumController extends Controller
 {
     public function index(): View
     {
-        return view('pages.media-photos', [
-            'albums' => PhotoAlbum::query()
+        $albums = PhotoAlbum::query()
                 ->where('status', 'published')
                 ->whereNotNull('published_at')
                 ->where('published_at', '<=', now())
                 ->with('photos:id,photo_album_id,path')
-                ->withCount('photos')
                 ->orderByDesc('published_at')
                 ->orderByDesc('id')
-                ->get(),
-        ]);
+                ->paginate(6)
+                ->withQueryString();
+
+        $nextUrl = $albums->nextPageUrl();
+        if ($nextUrl && ! request()->boolean('fragment')) {
+            $nextUrl .= str_contains($nextUrl, '?') ? '&fragment=1' : '?fragment=1';
+        }
+
+        $viewData = compact('albums', 'nextUrl');
+
+        return request()->boolean('fragment')
+            ? view('partials.photo-albums', $viewData)
+            : view('pages.media-photos', $viewData);
     }
 
     public function show(PhotoAlbum $album): View

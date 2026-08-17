@@ -3,9 +3,24 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\PhotoAlbumController;
+use App\Models\News;
+use App\Models\Opportunity;
 use Illuminate\Support\Facades\Route;
+use App\Models\Video;
 
-Route::view('/', 'pages.home')->name('home');
+Route::get('/', function () {
+    $publishedQuery = static fn (string $model): \Illuminate\Database\Eloquent\Builder => $model::query()
+        ->where('status', 'published')
+        ->whereNotNull('published_at')
+        ->where('published_at', '<=', now())
+        ->orderByDesc('published_at')
+        ->orderByDesc('id');
+
+    return view('pages.home', [
+        'homeNews' => $publishedQuery(News::class)->limit(3)->get(),
+        'homeOpportunities' => $publishedQuery(Opportunity::class)->with('tag')->limit(3)->get(),
+    ]);
+})->name('home');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/about/project', 'pages.about-project')->name('about.project');
 Route::view('/about/mission', 'pages.about-mission')->name('about.mission');
@@ -13,6 +28,7 @@ Route::view('/about/directions', 'pages.about-directions')->name('about.directio
 Route::view('/about/audits', 'pages.about-audits')->name('about.audits');
 Route::view('/about/results', 'pages.about-results')->name('about.results');
 Route::view('/about/reports', 'pages.about-reports')->name('about.reports');
+Route::view('/about/experts', 'pages.about-experts')->name('about.experts');
 Route::view('/business', 'pages.business')->name('business');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 Route::get('/news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
@@ -21,7 +37,11 @@ Route::get('/stories/{opportunity:slug}', [OpportunityController::class, 'show']
 Route::redirect('/media', '/media/photos')->name('media');
 Route::get('/media/photos', [PhotoAlbumController::class, 'index'])->name('media.photos');
 Route::get('/media/photos/{album:slug}', [PhotoAlbumController::class, 'show'])->name('media.photos.show');
-Route::view('/media/videos', 'pages.media-videos')->name('media.videos');
+Route::get('/media/videos', function () {
+    return view('pages.media-videos', [
+        'videos' => Video::query()->ordered()->get(),
+    ]);
+})->name('media.videos');
 Route::view('/media/catalogues', 'pages.media-catalogues')->name('media.catalogues');
 Route::view('/partners', 'pages.partners')->name('partners');
 Route::view('/contacts', 'pages.contacts')->name('contacts');

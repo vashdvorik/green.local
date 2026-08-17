@@ -482,6 +482,58 @@
     min-width: 0;
 }
 
+/* Album Builder galleries use the shared editorial upload classes. Keep the
+ * proven gallery geometry for album pages as well as editorial pages. */
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--drop-label,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--drop-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto !important;
+    margin: 0;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--file-info,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--file-status,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--image-preview-overlay,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--file-info,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--file-status,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--image-preview-overlay {
+    display: none;
+}
+
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--list-scroller,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--list,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--item,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--file-wrapper,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--image-preview-wrapper,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--list-scroller,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--list,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--item,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--file-wrapper,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--image-preview-wrapper,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--image-clip,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--image-clip {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--image-bitmap,
+.fi-page.fi-album-page .editorial-image-upload--landscape .filepond--image-vector,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--image-bitmap,
+.fi-page.fi-album-page .editorial-image-upload--portrait .filepond--image-vector {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover;
+    object-position: center;
+}
+
 .fi-page.fi-album-page .album-photo-manager .fi-fo-repeater-item-content {
     padding: 10px;
 }

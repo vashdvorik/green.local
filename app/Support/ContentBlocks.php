@@ -17,11 +17,9 @@ use Filament\Support\Icons\Heroicon;
 
 class ContentBlocks
 {
-    public static function schema(string $field, bool $defaultParagraph = false): Builder
+    public static function schema(string $field, bool $defaultParagraph = false, ?array $allowedBlocks = null): Builder
     {
-        return Builder::make($field)
-            ->label(null)
-            ->blocks([
+        $blocks = [
                 Block::make('paragraph')
                     ->label('Текст')
                     ->icon(Heroicon::OutlinedDocumentText)
@@ -80,7 +78,18 @@ class ContentBlocks
                             ->helperText('YouTube, Vimeo или другой безопасный embed-URL.'),
                         TextInput::make('caption')->label('Подпись')->maxLength(191),
                     ]),
-            ])
+            ];
+
+        if ($allowedBlocks !== null) {
+            $blocks = array_values(array_filter(
+                $blocks,
+                static fn (Block $block): bool => in_array($block->getName(), $allowedBlocks, true),
+            ));
+        }
+
+        return Builder::make($field)
+            ->label(null)
+            ->blocks($blocks)
             ->addActionLabel('Добавить блок')
             ->addBetweenActionLabel('Вставить между')
             ->blockNumbers(false)

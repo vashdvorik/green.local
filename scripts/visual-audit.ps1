@@ -27,6 +27,7 @@ $allPages = @(
     [pscustomobject]@{ Slug = "about-audits"; Path = "/about/audits" },
     [pscustomobject]@{ Slug = "about-results"; Path = "/about/results" },
     [pscustomobject]@{ Slug = "about-reports"; Path = "/about/reports" },
+    [pscustomobject]@{ Slug = "about-experts"; Path = "/about/experts" },
     [pscustomobject]@{ Slug = "business"; Path = "/business" },
     [pscustomobject]@{ Slug = "news"; Path = "/news" },
     [pscustomobject]@{ Slug = "stories"; Path = "/stories" },

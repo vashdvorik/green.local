@@ -26,6 +26,7 @@
                     <a href="{{ route('about.audits') }}" data-i18n="nav.about.audits">Энергоаудиты</a>
                     <a href="{{ route('about.results') }}" data-i18n="nav.about.results">Результаты проекта</a>
                     <a href="{{ route('about.reports') }}" data-i18n="nav.about.reports">Отчёты</a>
+                    <a href="{{ route('about.experts') }}" data-i18n="nav.about.experts">Наши эксперты</a>
                 </div>
             </div>
             <a href="{{ route('business') }}" data-i18n="nav.business">Для бизнеса</a>
