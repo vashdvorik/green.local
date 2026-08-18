@@ -22,15 +22,10 @@
             </div>
             <div class="site-footer__column">
                 <span class="site-footer__label" data-i18n="footer.contact">Контакты</span>
-                <span data-i18n="footer.address">Адрес: placeholder</span>
-                <span data-i18n="footer.phone">Телефон: placeholder</span>
-                <span data-i18n="footer.email">E-mail: placeholder</span>
+                <span data-i18n="footer.address">Адрес: MD - 3000 Тирасполь ул. Свердлова 57</span>
+                <span data-i18n="footer.phone">Телефон: 533 80988</span>
+                <span data-i18n="footer.email">E-mail: info@education.md</span>
                 <a href="{{ route('contacts') }}" data-i18n="home.contact.cta">Контакты <span aria-hidden="true">→</span></a>
-                <div class="footer-socials" aria-label="Social media">
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">YouTube</a>
-                </div>
             </div>
         </div>
         <div class="site-footer__bottom">
