@@ -13,15 +13,25 @@ class ImageProcessor
 {
     public function store(UploadedFile $file, string $directory = 'uploads', ?string $ratio = null): string
     {
+        // A gallery can process several large uploads in one Livewire request.
+        // Keep the request alive long enough for GD, but do not disable the
+        // execution limit globally or leave image processing unbounded.
+        if (function_exists('set_time_limit')) {
+            @set_time_limit(120);
+        }
+
         $maxDimension = max(320, (int) SiteSetting::getValue('images.max_dimension', 2400));
         $quality = min(100, max(20, (int) SiteSetting::getValue('images.avif_quality', 60)));
         $image = Image::read($file->getRealPath() ?: $file->getPathname());
 
+        // Resize the source before crop. Cropping a 6000px+ source first
+        // creates another huge GD bitmap and can exceed shared-host limits
+        // when a gallery contains several photos.
+        $image->scaleDown(width: $maxDimension, height: $maxDimension);
+
         if ($ratio !== null) {
             $this->cropToRatio($image, $ratio);
         }
-
-        $image->scaleDown(width: $maxDimension, height: $maxDimension);
 
         $path = trim($directory, '/').'/'.Str::uuid().'.avif';
         $this->disk()->put($path, $image->toAvif($quality));

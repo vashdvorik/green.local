@@ -9,6 +9,7 @@ use App\Filament\Resources\NewsResource\Pages\CreateNews;
 use App\Filament\Resources\NewsResource\Pages\EditNews;
 use App\Filament\Resources\OpportunityResource;
 use App\Filament\Resources\OpportunityResource\Pages\CreateOpportunity;
+use App\Filament\Resources\OpportunityResource\Pages\EditOpportunity;
 use App\Filament\Resources\PhotoAlbumResource;
 use App\Filament\Resources\PhotoAlbumResource\Pages\CreatePhotoAlbum;
 use App\Filament\Resources\TagResource;
@@ -848,6 +849,28 @@ class ContentManagementRegressionTest extends TestCase
         $this->assertSame(600, $processed->height());
     }
 
+    public function test_avif_processor_handles_large_gallery_sources_before_cropping(): void
+    {
+        if (! function_exists('imageavif')) {
+            $this->fail('The GD extension with AVIF support is required for image processing.');
+        }
+
+        Storage::fake('public');
+        SiteSetting::putValue('images.max_dimension', 640);
+        SiteSetting::putValue('images.avif_quality', 60);
+
+        $path = app(ImageProcessor::class)->store(
+            UploadedFile::fake()->image('large-gallery-source.jpg', 3200, 1800),
+            'uploads/albums',
+            FilamentImageUpload::LANDSCAPE_RATIO,
+        );
+
+        $processed = Image::read(Storage::disk('public')->path($path));
+
+        $this->assertSame(480, $processed->width());
+        $this->assertSame(360, $processed->height());
+    }
+
     public function test_filament_navigation_groups_and_entries_remain_explicit(): void
     {
         $panel = new AdminPanelProvider(app());
@@ -1329,6 +1352,34 @@ class ContentManagementRegressionTest extends TestCase
 
         $this->assertSame('published', $news->status);
         $this->assertSame('2026-08-12 14:30:00', $news->published_at?->format('Y-m-d H:i:s'));
+    }
+
+    public function test_published_opportunity_publication_date_can_be_changed_without_unpublishing(): void
+    {
+        Config::set('admin.email', 'admin@example.test');
+        $admin = User::factory()->create(['email' => 'admin@example.test']);
+        $opportunity = Opportunity::create([
+            'slug' => 'published-opportunity-date-edit',
+            'status' => 'published',
+            'published_at' => Carbon::parse('2026-08-01 09:00:00'),
+            'title' => ['ru' => 'Опубликованный тендер'],
+            'excerpt' => ['ru' => 'Краткое описание тендера'],
+            'content' => ['ru' => [['type' => 'paragraph', 'data' => ['text' => 'Текст тендера']]]],
+        ]);
+
+        Livewire::actingAs($admin)
+            ->test(EditOpportunity::class, ['record' => $opportunity->id])
+            ->assertFormFieldExists('published_at')
+            ->fillForm([
+                'published_at' => Carbon::parse('2026-08-12 14:30:00'),
+            ])
+            ->call('saveDraft')
+            ->assertHasNoFormErrors();
+
+        $opportunity->refresh();
+
+        $this->assertSame('published', $opportunity->status);
+        $this->assertSame('2026-08-12 14:30:00', $opportunity->published_at?->format('Y-m-d H:i:s'));
     }
 
     public function test_new_editorial_records_can_be_backdated_but_not_published_with_a_future_date(): void
