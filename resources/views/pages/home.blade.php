@@ -16,7 +16,7 @@
                     <p data-i18n="home.copy">Площадка для бизнеса, специалистов и организаций, где практические знания помогают рациональнее использовать энергию, снижать энергозатраты и внедрять современные решения.</p>
                     <div class="hero__actions">
                         <a class="button button--light" href="{{ route('about.project') }}" data-i18n="home.about">Узнать о проекте</a>
-                        <a class="button button--outline-light" href="{{ route('stories') }}" data-i18n="home.opportunities">Возможности</a>
+                        <a class="button button--outline-light" href="{{ route('stories') }}" data-i18n="home.opportunities">Тендеры</a>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
 @if ($homeOpportunities->count() >= 3)
 <section class="section section--opportunities home-energy-section">
     <div class="container">
-        <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.opps.label">Актуальные возможности</span></div><h2 data-i18n="home.opps.title">Возможности, которыми можно воспользоваться сейчас.</h2></div><a class="text-link" href="{{ route('stories') }}" data-i18n="home.opps.cta">Все возможности <span aria-hidden="true">→</span></a></div>
+                <div class="section-head section-head--feed"><div><div class="section-marker"><span data-i18n="home.opps.label">Актуальные тендеры</span></div><h2 data-i18n="home.opps.title">Тендеры, которыми можно воспользоваться сейчас.</h2></div><a class="text-link" href="{{ route('stories') }}" data-i18n="home.opps.cta">Все тендеры <span aria-hidden="true">→</span></a></div>
         <div class="opportunity-grid">
             @foreach ($homeOpportunities as $item)
                 @php($isClosed = $item->application_deadline?->isBefore(today()) ?? false)

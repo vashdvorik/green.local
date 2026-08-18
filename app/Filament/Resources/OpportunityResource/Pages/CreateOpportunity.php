@@ -14,7 +14,7 @@ class CreateOpportunity extends CreateRecord
 
     protected static string $resource = OpportunityResource::class;
 
-    protected static ?string $title = 'Новая возможность';
+    protected static ?string $title = 'Новый тендер';
 
     protected function getHeaderActions(): array
     {
@@ -28,7 +28,7 @@ class CreateOpportunity extends CreateRecord
 
     public function getTitle(): string
     {
-        return (string) (data_get($this->data, 'title.ru') ?: 'Новая возможность');
+        return (string) (data_get($this->data, 'title.ru') ?: 'Новый тендер');
     }
 
     public function getPageClasses(): array

@@ -6,14 +6,14 @@
         <div class="page-section__header page-section__header--row">
             <div>
                 <span class="section-marker">
-                    <span class="locale-copy locale-copy--ru">Лента возможностей</span>
-                    <span class="locale-copy locale-copy--ro">Fluxul oportunităților</span>
-                    <span class="locale-copy locale-copy--en">Opportunities feed</span>
+                    <span class="locale-copy locale-copy--ru">Лента тендеров</span>
+                    <span class="locale-copy locale-copy--ro">Lista licitațiilor</span>
+                    <span class="locale-copy locale-copy--en">Tender feed</span>
                 </span>
                 <h1>
-                    <span class="locale-copy locale-copy--ru">Найдите следующий шаг.</span>
-                    <span class="locale-copy locale-copy--ro">Găsiți următorul pas.</span>
-                    <span class="locale-copy locale-copy--en">Find your next step.</span>
+                    <span class="locale-copy locale-copy--ru">Наши тендеры</span>
+                    <span class="locale-copy locale-copy--ro">Licitațiile noastre</span>
+                    <span class="locale-copy locale-copy--en">Our tenders</span>
                 </h1>
             </div>
             <label class="filter-toggle">

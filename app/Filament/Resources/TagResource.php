@@ -22,7 +22,7 @@ class TagResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Возможности';
+    protected static string|\UnitEnum|null $navigationGroup = 'Тендеры';
 
     protected static ?string $navigationLabel = 'Теги';
 
@@ -67,7 +67,7 @@ class TagResource extends Resource
                         e($record->colorLabel()),
                     )))
                     ->html(),
-                TextColumn::make('opportunities_count')->counts('opportunities')->label('Возможностей'),
+                TextColumn::make('opportunities_count')->counts('opportunities')->label('Тендеров'),
             ])
             ->recordActions([EditAction::make(), DeleteAction::make()])
             ->stackedOnMobile();

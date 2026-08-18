@@ -34,7 +34,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Инфопанель')
             ->assertSee('Добавить новость')
-            ->assertSee('Добавить возможность')
+            ->assertSee('Добавить тендер')
             ->assertSee('ИИ-перевод подключён')
             ->assertSee('Последние изменения')
             ->assertSee('Материал для панели управления')

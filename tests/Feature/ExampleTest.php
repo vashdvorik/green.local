@@ -42,6 +42,18 @@ class ExampleTest extends TestCase
             ->assertSee('Главная');
     }
 
+    public function test_opportunity_public_section_is_named_tenders(): void
+    {
+        $this->get('/')
+            ->assertSee('Тендеры')
+            ->assertDontSee('>Возможности<', false);
+
+        $this->get('/stories')
+            ->assertSee('Лента тендеров')
+            ->assertSee('Наши тендеры')
+            ->assertDontSee('Лента возможностей');
+    }
+
     public function test_internal_pages_start_with_content_instead_of_a_photo_hero(): void
     {
         foreach (self::INTERNAL_PAGES as $path) {

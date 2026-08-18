@@ -35,8 +35,8 @@ class ContentOverview extends StatsOverviewWidget
                 ->description($publishedNews === 1 ? 'материал доступен на сайте' : 'материалов доступно на сайте')
                 ->color('primary')
                 ->url(NewsResource::getUrl('index')),
-            Stat::make('Актуальные возможности', $publishedOpportunities)
-                ->description($publishedOpportunities === 1 ? 'предложение опубликовано' : 'предложений опубликовано')
+            Stat::make('Актуальные тендеры', $publishedOpportunities)
+                ->description($publishedOpportunities === 1 ? 'тендер опубликован' : 'тендеров опубликовано')
                 ->color('primary')
                 ->url(OpportunityResource::getUrl('index')),
             Stat::make('Запланировано', $scheduled)

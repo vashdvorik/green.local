@@ -5,7 +5,7 @@
                 <span aria-hidden="true">＋</span> Добавить новость
             </a>
             <a href="{{ $createOpportunityUrl }}" class="hub-dashboard-operations__action">
-                <span aria-hidden="true">＋</span> Добавить возможность
+                <span aria-hidden="true">＋</span> Добавить тендер
             </a>
         </div>
 
@@ -34,7 +34,7 @@
                     @endforeach
                 </div>
             @else
-                <p class="hub-dashboard-operations__empty">Добавьте первую новость или возможность — она появится здесь.</p>
+                <p class="hub-dashboard-operations__empty">Добавьте первую новость или тендер — он появится здесь.</p>
             @endif
         </div>
     </section>

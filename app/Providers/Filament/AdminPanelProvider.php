@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->themeSwitcher(false)
             ->navigationGroups([
                 'Новости',
-                'Возможности',
+                'Тендеры',
                 'Медиа',
                 'Настройки сайта',
             ])

@@ -16,7 +16,7 @@
                 <a href="{{ route('about.project') }}" data-i18n="nav.about">О проекте</a>
                 <a href="{{ route('business') }}" data-i18n="nav.business">Для бизнеса</a>
                 <a href="{{ route('news') }}" data-i18n="nav.news">Новости</a>
-                <a href="{{ route('stories') }}" data-i18n="nav.opportunities">Возможности</a>
+                <a href="{{ route('stories') }}" data-i18n="nav.opportunities">Тендеры</a>
                 <a href="{{ route('media.photos') }}" data-i18n="nav.media">Медиа</a>
                 <a href="{{ route('partners') }}" data-i18n="nav.partners">Партнёры</a>
             </div>

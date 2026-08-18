@@ -59,7 +59,7 @@ class SiteOperations extends Widget
             ->limit(5)
             ->get()
             ->map(fn (Opportunity $item): array => [
-                'type' => 'Возможность',
+                'type' => 'Тендер',
                 'title' => $item->titleFor('ru') ?: 'Без заголовка',
                 'status' => $this->statusLabel($item->status),
                 'updated_at' => $item->updated_at,

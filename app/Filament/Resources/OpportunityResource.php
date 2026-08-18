@@ -25,25 +25,25 @@ class OpportunityResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Возможности';
+    protected static string|\UnitEnum|null $navigationGroup = 'Тендеры';
 
-    protected static ?string $navigationLabel = 'Все возможности';
+    protected static ?string $navigationLabel = 'Все тендеры';
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $modelLabel = 'возможность';
+    protected static ?string $modelLabel = 'тендер';
 
-    protected static ?string $pluralModelLabel = 'Возможности';
+    protected static ?string $pluralModelLabel = 'Тендеры';
 
     public static function getNavigationItems(): array
     {
         return [
-            NavigationItem::make('Все возможности')
-                ->key('opportunities.index')->group('Возможности')->icon(Heroicon::OutlinedSparkles)->sort(1)
+            NavigationItem::make('Все тендеры')
+                ->key('opportunities.index')->group('Тендеры')->icon(Heroicon::OutlinedSparkles)->sort(1)
                 ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.resources.opportunities.index'))
                 ->url(static::getUrl('index')),
-            NavigationItem::make('Добавить возможность')
-                ->key('opportunities.create')->group('Возможности')->icon(Heroicon::OutlinedPlus)->sort(2)
+            NavigationItem::make('Добавить тендер')
+                ->key('opportunities.create')->group('Тендеры')->icon(Heroicon::OutlinedPlus)->sort(2)
                 ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.resources.opportunities.create'))
                 ->url(static::getUrl('create')),
         ];

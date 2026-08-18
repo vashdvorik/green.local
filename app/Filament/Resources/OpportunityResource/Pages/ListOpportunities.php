@@ -12,6 +12,6 @@ class ListOpportunities extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [CreateAction::make()->label('Добавить возможность')];
+        return [CreateAction::make()->label('Добавить тендер')];
     }
 }

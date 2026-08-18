@@ -857,7 +857,7 @@ class ContentManagementRegressionTest extends TestCase
         $this->assertFalse($panel->hasThemeSwitcher());
         $this->assertSame([
             'Новости',
-            'Возможности',
+            'Тендеры',
             'Медиа',
             'Настройки сайта',
         ], $panel->getNavigationGroups());
@@ -870,7 +870,7 @@ class ContentManagementRegressionTest extends TestCase
         $this->assertNavigationItems(
             OpportunityResource::getNavigationItems(),
             ['opportunities.index', 'opportunities.create'],
-            'Возможности',
+            'Тендеры',
         );
         $this->assertNavigationItems(
             PhotoAlbumResource::getNavigationItems(),
@@ -880,7 +880,7 @@ class ContentManagementRegressionTest extends TestCase
 
         $tagItem = TagResource::getNavigationItems()[0];
         $this->assertSame('Теги', $tagItem->getLabel());
-        $this->assertSame('Возможности', $tagItem->getGroup());
+        $this->assertSame('Тендеры', $tagItem->getGroup());
     }
 
     public function test_filament_resource_tables_stack_on_mobile(): void
@@ -997,7 +997,7 @@ class ContentManagementRegressionTest extends TestCase
 
         $opportunityCreateResponse
             ->assertOk()
-            ->assertSee('Новая возможность')
+            ->assertSee('Новый тендер')
             ->assertSee('Фотография обложки')
             ->assertDontSee('Материал')
             ->assertDontSee('Публикация')

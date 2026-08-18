@@ -6,9 +6,9 @@
         <div class="page-section__header page-section__header--row dynamic-article__header">
             <div>
                 <span class="section-marker">
-                    <span class="locale-copy locale-copy--ru">Возможности</span>
-                    <span class="locale-copy locale-copy--ro">Oportunități</span>
-                    <span class="locale-copy locale-copy--en">Opportunities</span>
+                    <span class="locale-copy locale-copy--ru">Тендеры</span>
+                    <span class="locale-copy locale-copy--ro">Licitații</span>
+                    <span class="locale-copy locale-copy--en">Tenders</span>
                 </span>
                 <h1>
                     <span class="locale-copy locale-copy--ru">{{ $opportunity->titleFor('ru') }}</span>
@@ -49,9 +49,9 @@
                 @endforeach
             </div>
             <a class="button button--outline dynamic-article__back" href="{{ route('stories') }}">
-                <span class="locale-copy locale-copy--ru">← Назад к возможностям</span>
-                <span class="locale-copy locale-copy--ro">← Înapoi la oportunități</span>
-                <span class="locale-copy locale-copy--en">← Back to opportunities</span>
+                <span class="locale-copy locale-copy--ru">← Назад к тендерам</span>
+                <span class="locale-copy locale-copy--ro">← Înapoi la licitații</span>
+                <span class="locale-copy locale-copy--en">← Back to tenders</span>
             </a>
         </article>
     </div>

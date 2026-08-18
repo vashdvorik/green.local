@@ -37,7 +37,7 @@
             </div>
             <a href="{{ route('business') }}" data-i18n="nav.business">Для бизнеса</a>
             <a href="{{ route('news') }}" data-i18n="nav.news">Новости</a>
-            <a href="{{ route('stories') }}" data-i18n="nav.opportunities">Возможности</a>
+            <a href="{{ route('stories') }}" data-i18n="nav.opportunities">Тендеры</a>
             <div class="navigation__dropdown" data-dropdown>
                 <button class="navigation__dropdown-toggle" type="button" data-dropdown-toggle aria-expanded="false" aria-haspopup="true">
                     <span data-i18n="nav.media">Медиа</span>
