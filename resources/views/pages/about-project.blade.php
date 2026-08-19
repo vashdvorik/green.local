@@ -1,4 +1,4 @@
 @extends('layouts.site')
 @section('content')
-    @include('partials.about-detail', ['type' => 'project'])
+    @include('partials.about-project-content')
 @endsection

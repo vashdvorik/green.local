@@ -63,6 +63,22 @@ class ExampleTest extends TestCase
         }
     }
 
+    public function test_project_page_preserves_client_text_in_structured_blocks(): void
+    {
+        $this->get('/about/project')
+            ->assertOk()
+            ->assertSee('about-project-page', false)
+            ->assertSee('В Приднестровье началась реализация нового проекта «Центр зеленой энергетики», который осуществляется в рамках программы AdTrade при финансовой поддержке Швеции и Великобритании.')
+            ->assertSee('В рамках проекта планируется:')
+            ->assertSee('подготовить 15 специалистов в области энергоэффективности и проведения энергетических аудитов;')
+            ->assertSee('Главная задача проекта — сделать энергоэффективность не только темой для обсуждения, а реальным практическим инструментом, который помогает предприятиям экономить ресурсы, внедрять новые технологии и становиться более устойчивыми.')
+            ->assertSee('about-project-page__plan-list', false)
+            ->assertSee('about-project-page__closing', false)
+            ->assertSee('/images/donors/sweden.png', false)
+            ->assertSee('/images/donors/uk-international-development.png', false)
+            ->assertSee('/images/donors/undp.png', false);
+    }
+
     public function test_contacts_page_contains_the_styled_google_map_embed(): void
     {
         $this->get('/contacts')
@@ -86,6 +102,13 @@ class ExampleTest extends TestCase
             ->assertSee('section--experts', false)
             ->assertSee('href="'.route('news').'"', false)
             ->assertSee('href="'.route('stories').'"', false)
+            ->assertSee('/images/donors/sweden.png', false)
+            ->assertSee('/images/donors/uk-international-development.png', false)
+            ->assertSee('/images/donors/undp.png', false)
+            ->assertSee('partners-grid--compact', false)
+            ->assertDontSee('Экспертиза объединяет.')
+            ->assertDontSee('Все партнёры')
+            ->assertDontSee('PARTNER 01')
             ->assertDontSee('page-news-card', false)
             ->assertDontSee('page-opportunity-card', false);
 

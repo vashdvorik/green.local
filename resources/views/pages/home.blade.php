@@ -194,9 +194,15 @@
 </section>
 
 <section class="section section--partners home-energy-section">
-    <div class="container partners-grid">
-        <div><div class="section-marker"><span data-i18n="home.partners.label">Партнёры</span></div><h2 data-i18n="home.partners.title">Экспертиза объединяет.</h2><p class="body-copy" data-i18n="home.partners.copy">Green Energy Hub сотрудничает с организациями, которые помогают развивать экспертизу, обучение и практические решения в сфере энергоэффективности.</p><a class="button button--outline" href="{{ route('partners') }}" data-i18n="home.partners.cta">Все партнёры <span aria-hidden="true">→</span></a></div>
-        <div class="partner-logos"><div class="partner-logo">PARTNER 01</div><div class="partner-logo">PARTNER 02</div><div class="partner-logo">PARTNER 03</div><div class="partner-logo">PARTNER 04</div></div>
+    <div class="container partners-grid partners-grid--compact">
+        <div class="partners-grid__support">
+            <span class="partners-grid__support-label" data-i18n="home.partners.support">При финансовой поддержке</span>
+            <div class="partner-logos" aria-label="Партнёры программы">
+                <div class="partner-logo partner-logo--sweden"><img src="{{ asset('images/donors/sweden.png') }}" alt="Логотип Швеции" loading="lazy" decoding="async"></div>
+                <div class="partner-logo partner-logo--uk"><img src="{{ asset('images/donors/uk-international-development.png') }}" alt="UK International Development" loading="lazy" decoding="async"></div>
+                <div class="partner-logo partner-logo--undp"><img src="{{ asset('images/donors/undp.png') }}" alt="UNDP" loading="lazy" decoding="async"></div>
+            </div>
+        </div>
     </div>
 </section>
 
